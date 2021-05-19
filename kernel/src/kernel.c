@@ -86,7 +86,7 @@ void Print(Framebuffer* framebuffer, PSF1_FONT* psf1_font, unsigned int color, c
 
 void start(Framebuffer* framebuffer, PSF1_FONT* psf1_font){
 
-        Print(framebuffer, psf1_font, 0xFFFDD0, "You just got Rick ASCIID"
+        Print(framebuffer, psf1_font, 0xFFFDD0, "You just got Rick ASCIID");
         Print(framebuffer, psf1_font, 0xFFFDD0, "#@@@##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@##");
         Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#");
         Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#");
