@@ -111,12 +111,12 @@ void start(Framebuffer* framebuffer, PSF1_FONT* psf1_font){
         Print(framebuffer, psf1_font, 0xFFFDD0, "#@:::::::::;;;;;''###@@@@#@@#####'''++##'#######;;;;;;;;;;;;;;#");
         Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::++###@@@@@@@#####++'++##+#######;;;;;;;;;;;;;;#");
         Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::################################::::::::::::::#");
-        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::##############################''");
-        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::#############################+''''");
-        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::#############################+''''");
-        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::###############+++++##########++''");
-        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::#############@+++''+##############");
-        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::#############@+++''###########++''");
+        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::################################:::::::::::::''");
+        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::###############################+';;::::::;;;;;'");
+        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::################################+::::::::::::::");
+        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::###############+++++############++':::::::::::'");
+        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::#############@+++''+############:::::::::::::::");
+        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::#############@+++''#############+:::::::::::+''");
 
         // bytes per pixel, each pixel is 4 bytes wide because it has a red green and alpha channel
 
