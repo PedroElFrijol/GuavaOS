@@ -1,4 +1,5 @@
 
+
 OSNAME = CustomOS
 
 #FOLDERS AND VARIABLES
@@ -35,12 +36,12 @@ DIRS = $(wildcard $(SRCDIR)/*)
 kernel: $(OBJS) link
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c 
-	@ echo !==== COMPILING $^ #just here so i know it compiles
+	@ echo COMPILING
 	@ mkdir -p $(@D) 
 	$(CC) $(CFLAGS) -c $^ -o $@
 	
 link:
-	@ echo !==== LINKING
+	@ echo LINKING
 	$(LD) $(LDFLAGS) -o $(BUILDDIR)/kernel.elf $(OBJS)
 
 setup:
