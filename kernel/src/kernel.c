@@ -55,8 +55,9 @@ void putChar(Framebuffer* framebuffer, PSF1_FONT* psf1_font, unsigned int color,
                 *(unsigned int*)(pixPtr + x + (y * framebuffer->PixelsPerScanLine)) = color;
 
             }
-            fontPtr++;
         }
+
+        fontPtr++;
 
     }
 
