@@ -1,5 +1,3 @@
-
-
 OSNAME = CustomOS
 
 #FOLDERS AND VARIABLES
