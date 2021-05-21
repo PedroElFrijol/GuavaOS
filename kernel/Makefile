@@ -7,7 +7,7 @@ OVMFDIR = ../OVMFbin
 # VARIABLES
 
 LDS = kernel.ld # it is the linker script, it tells the linker what to do
-CC = gcc #compiles the src files that you made in C or C++
+CC = gcc # (C Compiler) compiles the src files that you made in C or C++
 LD = ld #the linker, it links all of the object files together
 
 CFLAGS = -ffreestanding -fshort-wchar
