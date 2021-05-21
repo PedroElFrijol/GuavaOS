@@ -1,4 +1,4 @@
-OSNAME = CustomOS
+OSNAME = VirusFusionOS
 
 #FOLDERS AND VARIABLES
 GNUEFI = ../gnu-efi
@@ -36,11 +36,11 @@ kernel: $(OBJS) link
 $(OBJDIR)/%.o: $(SRCDIR)/%.c 
 	@ echo COMPILING
 	@ mkdir -p $(@D) 
-	$(CC) $(CFLAGS) -c $^ -o $@
+	@$(CC) $(CFLAGS) -c $^ -o $@
 	
 link:
 	@ echo LINKING
-	$(LD) $(LDFLAGS) -o $(BUILDDIR)/kernel.elf $(OBJS)
+	@$(LD) $(LDFLAGS) -o $(BUILDDIR)/kernel.elf $(OBJS)
 
 setup:
 	

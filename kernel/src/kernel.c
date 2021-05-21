@@ -20,7 +20,7 @@ typedef struct { // its technically a CLASS
 
     unsigned int PixelsPerScanLine; // Pixels per scan line is how you determinine your refresh rate
 
-} Framebuffer; // the name of the struct and what this struct does is outputs the pixels
+} Framebuffer; // the name of the class and what this class does is outputs the pixels
 
 typedef struct {
 
@@ -30,7 +30,7 @@ typedef struct {
 
     unsigned char charsize; // defines how large the characters are in bytes
 
-} PSF1_HEADER; // this is what the struct is called
+} PSF1_HEADER; // this is what the class is called
 
 typedef struct {
 
