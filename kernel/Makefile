@@ -8,6 +8,7 @@ OVMFDIR = ../OVMFbin
 
 LDS = kernel.ld # it is the linker script, it tells the linker what to do
 CC = gcc # (C Compiler) compiles the src files that you made in C or C++
+LD = ld #the linker, it links all of the object files together
 
 CFLAGS = -ffreestanding -fshort-wchar
 LDFLAGS = -T $(LDS) -static -Bsymbolic -nostdlib
@@ -39,7 +40,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	
 link:
 	@ echo LINKING
-	@$(CC) $(LDFLAGS) -o $(BUILDDIR)/kernel.elf $(OBJS)
+	@$(LD) $(LDFLAGS) -o $(BUILDDIR)/kernel.elf $(OBJS)
 
 setup:
 	
