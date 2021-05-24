@@ -40,6 +40,14 @@ typedef struct {
 
 } PSF1_FONT;
 
+typedef struct{
+
+    unsigned int X;
+
+    unsigned int Y;
+
+} Point;
+
 void putChar(Framebuffer* framebuffer, PSF1_FONT* psf1_font, unsigned int color, char chr, unsigned int xOff, unsigned int yOff){
 
     unsigned int* pixPtr = (unsigned int*)framebuffer->BaseAddress; // fixes an error in C
@@ -65,17 +73,24 @@ void putChar(Framebuffer* framebuffer, PSF1_FONT* psf1_font, unsigned int color,
 
 unsigned int y = 0;
 
-void Print(Framebuffer* framebuffer, PSF1_FONT* psf1_font, unsigned int color, char* str) { // str short for string
+Point CursorPosition;
 
-    unsigned int x = 0;
+void Print(Framebuffer* framebuffer, PSF1_FONT* psf1_font, unsigned int color, char* str) { // str short for string
 
     char* chr = str; // we have a pointer because if we did not we would noly be able to print one character
 
     while(*chr != 0) { // checking if the address of str is not equal to 0
 
-        putChar(framebuffer, psf1_font, color, *chr, x, y);
+        putChar(framebuffer, psf1_font, color, *chr, CursorPosition.X, CursorPosition.Y);
 
-        x += 8; // everytime you print a character the character moves to the right 8 pixels so it doesen't overlap
+        CursorPosition.X += 8; // everytime you print a character the character moves to the right 8 pixels so it doesen't overlap
+
+        if(CursorPosition.X = 8 > framebuffer->Width){
+
+            CursorPosition.X = 0;
+            CursorPosition.Y += 16;
+
+        }
 
         chr++;
 
@@ -86,6 +101,12 @@ void Print(Framebuffer* framebuffer, PSF1_FONT* psf1_font, unsigned int color, c
 }
 
 void start(Framebuffer* framebuffer, PSF1_FONT* psf1_font){
+
+        CursorPosition.X = 50;
+
+        CursorPosition.Y = 120;
+
+        for(int t = 0; t < 50; t += 1){
 
         Print(framebuffer, psf1_font, 0xFFFDD0, "You just got Rick ASCIID");
         Print(framebuffer, psf1_font, 0xFFFDD0, "#@@@##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@##");
@@ -112,13 +133,13 @@ void start(Framebuffer* framebuffer, PSF1_FONT* psf1_font){
         Print(framebuffer, psf1_font, 0xFFFDD0, "#@:::::::::;;;;;''###@@@@#@@#####'''++##'#######;;;;;;;;;;;;;;#");
         Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::++###@@@@@@@#####++'++##+#######;;;;;;;;;;;;;;#");
         Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::################################::::::::::::::#");
-        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::################################:::::::::::::''");
-        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::###############################+';;::::::;;;;;'");
-        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::################################+::::::::::::::");
-        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::###############+++++############++':::::::::::'");
-        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::#############@+++''+############:::::::::::::::");
-        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::#############@+++''#############+:::::::::::+''");
-
+        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::################################:::::::::::::'#");
+        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::###############################+';;::::::;;;;;#");
+        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::################################+:::::::::::::#");
+        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::###############+++++############++':::::::::::#");
+        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::#############@+++''+############::::::::::::::#");
+        Print(framebuffer, psf1_font, 0xFFFDD0, "#@::::::::::::::#############@+++''#############+:::::::::::+'#");
+        }
         // bytes per pixel, each pixel is 4 bytes wide because it has a red green and alpha channel
 
         // 0X indicates that it is a hex number and that is the only purpose of 0X.
