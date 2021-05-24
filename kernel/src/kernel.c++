@@ -52,7 +52,7 @@ void putChar(Framebuffer* framebuffer, PSF1_FONT* psf1_font, unsigned int color,
 
     unsigned int* pixPtr = (unsigned int*)framebuffer->BaseAddress; // fixes an error in C
 
-    char* fontPtr = psf1_font->glyphBuffer + (chr * psf1_font->psf1_Header->charsize); // we are getting the base address of the glyph buffer and then adding on the character times the characters size    
+    char* fontPtr = (char*)psf1_font->glyphBuffer + (chr * psf1_font->psf1_Header->charsize); // we are getting the base address of the glyph buffer and then adding on the character times the characters size    
 
     for(unsigned long y = yOff; y < yOff + 16; y++){ // y = 16 because the height of every character is 16 pixels
 
@@ -75,9 +75,9 @@ unsigned int y = 0;
 
 Point CursorPosition;
 
-void Print(Framebuffer* framebuffer, PSF1_FONT* psf1_font, unsigned int color, char* str) { // str short for string
+void Print(Framebuffer* framebuffer, PSF1_FONT* psf1_font, unsigned int color, const char* str) { // str short for string
 
-    char* chr = str; // we have a pointer because if we did not we would noly be able to print one character
+    char* chr = (char*)str; // we have a pointer because if we did not we would noly be able to print one character
 
     while(*chr != 0) { // checking if the address of str is not equal to 0
 
@@ -100,7 +100,7 @@ void Print(Framebuffer* framebuffer, PSF1_FONT* psf1_font, unsigned int color, c
 
 }
 
-void start(Framebuffer* framebuffer, PSF1_FONT* psf1_font){
+extern "C" void start(Framebuffer* framebuffer, PSF1_FONT* psf1_font){
 
         CursorPosition.X = 50;
 
