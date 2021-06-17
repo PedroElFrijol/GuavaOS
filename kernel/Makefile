@@ -1,4 +1,4 @@
-OSNAME = VirusFusionOS
+OSNAME = GuavaOS
 
 #FOLDERS AND VARIABLES
 GNUEFI = ../gnu-efi
