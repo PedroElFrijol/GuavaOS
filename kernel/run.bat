@@ -1,4 +1,4 @@
-set OSNAME=VirusFusionOS
+set OSNAME=GuavaOS
 set BUILDDIR=bin
 set OVMFDIR=../OVMFbin
 
