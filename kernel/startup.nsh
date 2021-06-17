@@ -63,6 +63,6 @@ if exist fs7:\efi\boot\main.efi then
  goto END
 endif
 
- echo "Unable to find bootloader".
+ echo "Failed to locate bootloader".
  
 :END
