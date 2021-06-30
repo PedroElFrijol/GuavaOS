@@ -3,16 +3,19 @@
 // UEFI 2.9 Specs PDF Page 20
 typedef uint_least16_t CHAR16; // CHAR16 is supposed to be Minimum of 16-Bit but on some machines it will be 32-Bit.
 
-typedef unsigned int UINT32;
-typedef unsigned long long  UINT64;
+typedef unsigned int UINT32; // enabling 32 bit support
+
+// a signed int hold negative and positive so it would have less data to hold in the positive side (-50/50) while unsigned int only deals with positive numbers and has more space to hold data (0/100)
+
+typedef unsigned long long UINT64; // enabling 64 bit support
 
 typedef unsigned char BOOLEAN; // true or false thing
 
 typedef void *EFI_HANDLE; // used as a pointer
-typedef UINT64 EFI_STATUS;
+typedef UINT64 EFI_STATUS; // 
 
 // The code will not compile without it though.
-typedef struct EFI_SIMPLE_TEXT_INPUT_PROTOCOL {} EFI_SIMPLE_TEXT_INPUT_PROTOCOL; // This struct is a placeholder and not usable at this time
+typedef struct EFI_SIMPLE_TEXT_INPUT_PROTOCOL {} EFI_SIMPLE_TEXT_INPUT_PROTOCOL; // This struct is a placeholder and not usable at this time, it is also an empty struct
 
 // We are forward declaring this struct so that the two function typedefs can operate.
 struct EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL;
@@ -57,7 +60,7 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) // si
 {
     SystemTable->ConOut->Reset(SystemTable->ConOut, 1); // this wipes out the screen and the buffer
 
-    SystemTable->ConOut->OutputString(SystemTable->ConOut, L"Testing...\r\n"); // prints out "Testing..." to the uefi screen
+    SystemTable->ConOut->OutputString(SystemTable->ConOut, L"pedro."); // prints out to the uefi screen 
 
     while(1){}; // We use this while loop to hang. At this point, simple shut off computer
 
