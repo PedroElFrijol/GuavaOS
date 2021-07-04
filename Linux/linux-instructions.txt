@@ -11,3 +11,36 @@ Makefile: this is here so you can compile the efimain.c code
 drive.hdd: here to act like it is a physical drive we are using to boot up the UEFI
 
 bios64.bin:
+
+Installing Applications:
+
+  Install Mingw for Linux:
+
+    Arch Linux: $ sudo pacman -S mingw-w64
+
+    Debian:
+
+      1. apt-get install build-essential
+  
+      2. apt-get install mingw-w64
+      
+  Install QEMU KVM:
+    Arch Linux: $ sudo pacman -S qemu  
+  
+    Debian: apt-get install qemu-kvm
+  
+Mounting the Disk Image:
+
+  1. $ sudo losetup -fP --show drive/drive.hdd (Creating a loop device that will be located inside drive/drive.hdd)
+  
+  2. $ sudo fdisk -l /dev/loop0
+  
+  3. $ sudo mkdir /mnt/UEFI (Creating a direcotry for mounting)
+  
+  4. $ sudo mount -t vfat /dev/loop0p1 /mnt/UEFI (Mounting the loop device)
+  
+Unmounting:
+
+  1. $ sudo umount /mnt/UEFI (unmount from the directory you mounted in)
+  
+  2. $ sudo losetup -d /dev/loop0 (removing the loop device that was used for mounting)
