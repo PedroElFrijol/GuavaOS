@@ -2,11 +2,9 @@
 
 // UEFI 2.9 Specs PDF Page 20
 
-typedef unsigned short int  uint16_t;
+typedef unsigned short int uint16_t;
 
-typedef unsigned short int  uint_least16_t;
-
-typedef uint_least16_t CHAR16; // CHAR16 is supposed to be Minimum of 16-Bit but on some machines it will be 32-Bit.
+typedef uint16_t CHAR16; // CHAR16 is supposed to be Minimum of 16-Bit but on some machines it will be 32-Bit.
 
 typedef unsigned int UINT32; // enabling 32 bit support
 
@@ -17,7 +15,7 @@ typedef unsigned long long UINT64; // enabling 64 bit support
 typedef unsigned char BOOLEAN; // true or false thing
 
 typedef void *EFI_HANDLE; // used as a pointer
-typedef UINT64 EFI_STATUS; // 
+typedef UINT64 EFI_STATUS; // UINT64 is an unsigned long long variable so we are creating a variable called EFI_STATUS that is also an unsigned long long variable
 
 // The code will not compile without it though.
 typedef struct EFI_SIMPLE_TEXT_INPUT_PROTOCOL {} EFI_SIMPLE_TEXT_INPUT_PROTOCOL; // This struct is a placeholder and not usable at this time, it is also an empty struct
@@ -58,14 +56,14 @@ typedef struct EFI_SYSTEM_TABLE // this is the first struct because EFI had a sy
     EFI_SIMPLE_TEXT_INPUT_PROTOCOL ConIn;
     EFI_HANDLE ConsoleOutHandle;
     EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *ConOut;
-} EFI_SYSTEM_TABLE ;
+} EFI_SYSTEM_TABLE;
 
 // UEFI 2.9 Specs PDF Page 91
 EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) // similar to "int main()" in a C program, we create an imagehandle for the whole EFI interface including a system table pointer that points to EFI_SYSTEM_TABLE struct
 {
     SystemTable->ConOut->Reset(SystemTable->ConOut, 1); // this wipes out the screen and the buffer
 
-    SystemTable->ConOut->OutputString(SystemTable->ConOut, L"Testing..."); // prints out to the uefi screen 
+    SystemTable->ConOut->OutputString(SystemTable->ConOut, L"Testing...\r\n"); // prints out to the uefi screen 
 
     while(1){}; // We use this while loop to hang. At this point, simple shut off computer
 
