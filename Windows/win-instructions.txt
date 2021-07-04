@@ -1,0 +1,13 @@
+Windows Instructions: 
+
+compileEFI.bat: compiles the mainefi.c code (similar to the makefile)
+
+Makefile: this is here if you prefer to use this to compile instead of using compileEFI.bat
+
+mountdrive.bat: this is an easier way for mounting your drive.hdd file instead of going through the process of OSFMount (you still need OSFMount installed to run the batch file)
+
+unmount.bat: this is the opposite of mountdrive.bat, it is an easier way to unmount instead of going through the process of OSFMount to unmount it
+
+run-qemu.bat: this runs qemu KVM and makes it easier instead of copy and pasting the command in the terminal or writing it out
+
+drive.hdd: here to act like it is a physical drive we are using to boot up the UEFI
