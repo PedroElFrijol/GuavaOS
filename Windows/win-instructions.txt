@@ -1,5 +1,7 @@
 Windows Instructions: 
 
+efimain.c: the main code of the UEFI
+
 compileEFI.bat: compiles the mainefi.c code (similar to the makefile)
 
 Makefile: this is here if you prefer to use this to compile instead of using compileEFI.bat
