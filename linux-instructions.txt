@@ -1,0 +1,9 @@
+Linux Instructions: 
+
+Terminal Command to run Qemu KVM: qemu-system-x86_64 -drive format=raw,unit=0,file=drive/drive.hdd -bios bios64.bin -m 256M -display sdl -vga std -name GuavaOS -machine q35
+
+Makefile: this is here so you can compile the efimain.c code
+
+drive.hdd: here to act like it is a physical drive we are using to boot up the UEFI
+
+bios64.bin:
