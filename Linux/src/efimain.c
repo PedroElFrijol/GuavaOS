@@ -63,7 +63,7 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) // si
 {
     SystemTable->ConOut->Reset(SystemTable->ConOut, 1); // this wipes out the screen and the buffer
 
-    SystemTable->ConOut->OutputString(SystemTable->ConOut, L"Testing...\r\n"); // prints out to the uefi screen 
+    SystemTable->ConOut->OutputString(SystemTable->ConOut, L"Welcome to the GuavaOS UEFI Bootloader!\n"); // prints out to the uefi screen 
 
     while(1){}; // We use this while loop to hang. At this point, simple shut off computer
 
