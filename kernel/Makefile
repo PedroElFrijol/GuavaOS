@@ -27,13 +27,13 @@ BOOTEFI := $(GNUEFI)/x86_64/bootloader/main.efi
 
 rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d)) #some wildcard bullshit that idk
 
-SRC = $(call rwildcard,$(SRCDIR),*.c++)          
-OBJS = $(patsubst $(SRCDIR)/%.c++, $(OBJDIR)/%.o, $(SRC))
+SRC = $(call rwildcard,$(SRCDIR),*.c)          
+OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 DIRS = $(wildcard $(SRCDIR)/*)
 
 kernel: $(OBJS) link
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c++ 
+$(OBJDIR)/%.o: $(SRCDIR)/%.c 
 	@ echo COMPILING
 	@ mkdir -p $(@D) 
 	@$(CC) $(CFLAGS) -c $^ -o $@
