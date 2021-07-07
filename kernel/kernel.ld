@@ -1,33 +1,28 @@
 OUTPUT_FORMAT(elf64-x86-64)
 /* Tell the linker that we want the symbol start to be our entry point */
-ENTRY(start)
+ENTRY(start)                /* the name of the entry label */
 
-SECTIONS
-{
-    /* We wanna be placed in the higher half, 2MiB above 0 in physical memory. */
-    . = 0xffffffff80200000;
+SECTIONS {
+    . = 0x00100000;          /* the code should be loaded at 1 MB */
 
-    /* We place the .stivalehdr section containing the header in its own section, */
-    /* and we use the KEEP directive on it to make sure it doesn't get discarded. */
-    .stivalehdr : {
-        KEEP(*(.stivalehdr))
+    .text ALIGN (0x1000) :   /* align at 4 KB */
+    {
+        *(.text)             /* all text sections from all files */
     }
 
-    /* Then let's place all the other traditional executable sections afterwards. */
-    .text : {
-        *(.text*)
+    .rodata ALIGN (0x1000) : /* align at 4 KB */
+    {
+        *(.rodata*)          /* all read-only data sections from all files */
     }
 
-    .rodata : {
-        *(.rodata*)
+    .data ALIGN (0x1000) :   /* align at 4 KB */
+    {
+        *(.data)             /* all data sections from all files */
     }
 
-    .data : {
-        *(.data*)
-    }
-
-    .bss : {
-        *(COMMON)
-        *(.bss*)
+    .bss ALIGN (0x1000) :    /* align at 4 KB */
+    {
+        *(COMMON)            /* all COMMON sections from all files */
+        *(.bss)              /* all bss sections from all files */
     }
 }
