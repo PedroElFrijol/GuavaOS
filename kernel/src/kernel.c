@@ -50,7 +50,7 @@ typedef struct{
 
 } Point; // naming the typedef
 
-void putChar(Framebuffer* framebuffer, UNICODE_FONT * unicode_font, unsigned int color, char chr, unsigned int xOff, unsigned int yOff){
+void putChar(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int color, char chr, unsigned int xOff, unsigned int yOff){
 
     unsigned int* pixPtr = (unsigned int*)framebuffer->BaseAddress; // fixes an error in C
 
