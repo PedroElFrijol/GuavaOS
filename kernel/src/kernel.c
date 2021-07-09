@@ -75,7 +75,7 @@ void putChar(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int 
 
 unsigned int y = 0;
 
-Point CursorPosition;
+Point CharPosition;
 
 void Print(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int color, char* str) { // str short for string
 
@@ -83,14 +83,14 @@ void Print(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int co
 
     while(*chr != 0) { // checking if the address of str is not equal to 0
 
-        putChar(framebuffer, unicode_font, color, *chr, CursorPosition.X, CursorPosition.Y);
+        putChar(framebuffer, unicode_font, color, *chr, CharPosition.X, CharPosition.Y);
 
-        CursorPosition.X += 8; // everytime you print a character the character moves to the right 8 pixels so it doesen't overlap
+        CharPosition.X += 8; // everytime you print a character the character moves to the right 8 pixels so it doesen't overlap
 
-        if(CursorPosition.X >= framebuffer->Width){
+        if(CharPosition.X >= framebuffer->Width){
 
-            CursorPosition.X = 0;
-            CursorPosition.Y += 16;
+            CharPosition.X = 0;
+            CharPosition.Y += 16;
 
         }
 
@@ -104,9 +104,11 @@ void Print(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int co
 
 void start(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 
-        CursorPosition.X = 50;
+		// starts from top left corner of the screen and coordinates start off with (0,0)
 
-        CursorPosition.Y = 120;
+        CharPosition.X = 69; // 69 pixels to the right
+
+        CharPosition.Y = 420; // 420 pixels down
 
         Print(framebuffer, unicode_font, 0xFFFDD0, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 		Print(framebuffer, unicode_font, 0xFFFDD0, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
