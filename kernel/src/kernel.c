@@ -87,7 +87,7 @@ void Print(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int co
 
         CursorPosition.X += 8; // everytime you print a character the character moves to the right 8 pixels so it doesen't overlap
 
-        if(CursorPosition.X = 8 > framebuffer->Width){
+        if(CursorPosition.X >= framebuffer->Width){
 
             CursorPosition.X = 0;
             CursorPosition.Y += 16;
@@ -108,9 +108,7 @@ void start(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 
         CursorPosition.Y = 120;
 
-        for(int t = 0; t < 50; t += 1){
-
-		Print(framebuffer, unicode_font, 0xFFFDD0, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        Print(framebuffer, unicode_font, 0xFFFDD0, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 		Print(framebuffer, unicode_font, 0xFFFDD0, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		Print(framebuffer, unicode_font, 0xFFFDD0, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		Print(framebuffer, unicode_font, 0xFFFDD0, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
@@ -191,7 +189,6 @@ void start(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 		Print(framebuffer, unicode_font, 0xFFFDD0, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		Print(framebuffer, unicode_font, 0xFFFDD0, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-        }
         // bytes per pixel, each pixel is 4 bytes wide because it has a red green and alpha channel
 
         // 0X indicates that it is a hex number and that is the only purpose of 0X.

@@ -10,7 +10,7 @@ LDS = kernel.ld # it is the linker script, it tells the linker what to do
 CC = gcc # (C Compiler) compiles the src files that you made in C or C++
 LD = ld #the linker, it links all of the object files together
 
-CFLAGS = -ffreestanding -fshort-wchar
+CFLAGS = -ffreestanding -fshort-wchar -Wall
 LDFLAGS = -T $(LDS) -static -Bsymbolic -nostdlib
 
 # a flag is a command line option
