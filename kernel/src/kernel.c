@@ -48,7 +48,7 @@ typedef struct{
 
     unsigned int Y;
 
-} Point; // naming the typedef
+} Coordinates; // naming the typedef
 
 void putChar(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int color, char chr, unsigned int xOff, unsigned int yOff){
 
@@ -75,7 +75,7 @@ void putChar(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int 
 
 unsigned int y = 0;
 
-Point CharPosition;
+Coordinates CharPosition;
 
 void Print(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int color, char* str) { // str short for string
 
@@ -108,7 +108,7 @@ void start(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 
         CharPosition.X = 69; // 69 pixels to the right
 
-        CharPosition.Y = 420; // 420 pixels down
+        CharPosition.Y = 100; // 100 pixels down
 
         Print(framebuffer, unicode_font, 0xFFFDD0, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 		Print(framebuffer, unicode_font, 0xFFFDD0, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
