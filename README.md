@@ -10,7 +10,7 @@
   
   2 `cd GuavaOS && cd kernel && make kernel && make buildimg`
   
-# Things being worked on
+## Things being worked on
 
   Fixing the kernel font
 
