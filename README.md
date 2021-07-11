@@ -8,10 +8,10 @@
   
   If you are on windows then you must install WSL or use a VM of any linux distro
   
-  2 `cd GuavaOS && cd kernel && make kernel && make buildimg`
+  2 `cd GuavaOS && cd kernel && make kernel && make buildimg && make run`
   
 ## Things being worked on
 
-  Fixing the kernel font
+  Printing to a new line
 
-  GNU EFI being removed soon in the future and will be replaced with chadx86
+  GNU EFI being removed soon in the future and will be replaced with a uefi bootloader called chadx86 (chadx86 is also being worked on)
