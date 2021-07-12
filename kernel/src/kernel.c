@@ -102,13 +102,13 @@ void Print(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int co
 
 }
 
-void newln(char* str) { // char pointer is used for a string with an unknown length
+//void newln(char* str) { // char pointer is used for a string with an unknown length
 	
-	 Print(str); 
+	// Print(str); 
 	 
-	 Print("\n"); 
+	// Print("\n"); 
 
-}
+//}
 
 void start(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 
