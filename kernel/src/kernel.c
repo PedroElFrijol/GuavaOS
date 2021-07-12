@@ -118,7 +118,6 @@ void start(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 
         //CharPosition.Y = 420; // 420 pixels down
 
-
 		Print(framebuffer, unicode_font, 0xFFFDD0, "....................................................................................................");
 		Print(framebuffer, unicode_font, 0xFFFDD0, "....................................................................................................");
 		Print(framebuffer, unicode_font, 0xFFFDD0, "......................................,,,,,.........................................................");
@@ -197,7 +196,6 @@ void start(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 		Print(framebuffer, unicode_font, 0xFFFDD0, "..................................,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,....................................");
 		Print(framebuffer, unicode_font, 0xFFFDD0, "....................................................................................................");
 		Print(framebuffer, unicode_font, 0xFFFDD0, "....................................................................................................");
-
 
         // bytes per pixel, each pixel is 4 bytes wide because it has a red green and alpha channel
 
