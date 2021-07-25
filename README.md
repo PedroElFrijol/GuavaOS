@@ -20,4 +20,4 @@
 
   GNU EFI being removed soon in the future and will be replaced with a uefi bootloader called chadx86 (chadx86 is also being worked on)
   
-  ARM support may be included in the near future (check out CoffeeOS and PogOS to check out ARM support)
+  ARM support may be included in the near future for raspberry pi (check out CoffeeOS and PogOS to check out ARM support)
