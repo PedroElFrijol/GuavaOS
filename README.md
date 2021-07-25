@@ -10,8 +10,14 @@
   
   2 `cd GuavaOS && cd kernel && make kernel && make image && make run`
   
+## Bugs and Fixes
+
+  Printing to a new line on the framebuffer
+  
+  Fixing the Font
+  
 ## Things being worked on
 
-  Printing to a new line
-
   GNU EFI being removed soon in the future and will be replaced with a uefi bootloader called chadx86 (chadx86 is also being worked on)
+  
+  ARM support may be included in the near future, check out CoffeeOS and PogOS to check out ARM support
