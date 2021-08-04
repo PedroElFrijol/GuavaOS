@@ -1,6 +1,4 @@
-#define UNICODE
-
-typedef unsigned long long size_t; // type def makes a custom variable type
+typedef unsigned long long size_t;
 
 typedef struct {
 
@@ -102,14 +100,6 @@ void Print(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int co
 
 }
 
-//void newln(char* str) { // char pointer is used for a string with an unknown length
-	
-	// Print(str); 
-	 
-	// Print("\n"); 
-
-//}
-
 void println(){
 
 	CharPosition.X = 0;
@@ -120,6 +110,8 @@ void println(){
 
 void Logo(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 
+	println();
+	println();
 	Print(framebuffer, unicode_font, 0xFFFDD0, "   ____                         ___  ____  ");
 	println(); 
  	Print(framebuffer, unicode_font, 0xFFFDD0, " / ___|_   _  __ ___   ____ _ / _ \\/ ___| ");
@@ -229,11 +221,24 @@ void Logo(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 
 }
 
+int kernel = 60;
+
+// Kernel Panic
+void panic(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
+	if(kernel < 69){
+
+		Print(framebuffer, unicode_font, 0xFF0000, "PANIC FAILURE");
+
+	}
+}
+
 void start(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 
 		// starts from top left corner of the screen start off with (0,0)
 
 		CharPosition.X = 0;
+
+		panic(framebuffer, unicode_font);
 
 		Logo(framebuffer, unicode_font);
 
