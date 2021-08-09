@@ -221,13 +221,13 @@ void Logo(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 
 }
 
-int kernel = 60;
+int kernel = 69;
 
 // Kernel Panic
 void panic(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
-	if(kernel < 69){
+	if(kernel < 420){
 
-		Print(framebuffer, unicode_font, 0xFF0000, "PANIC FAILURE");
+		Print(framebuffer, unicode_font, 0xFF0000, "Kernel Panic at the disco!");
 
 	}
 }
