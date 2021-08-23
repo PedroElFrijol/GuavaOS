@@ -8,7 +8,7 @@
   
   If you are on windows then you must install WSL or use a VM of any linux distro
   
-  2 `cd GuavaOS && cd kernel && make kernel && make image && make run`
+  2 `cd Guava OS && make all`
   
 ## Updates and Fixes
 
