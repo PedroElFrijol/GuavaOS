@@ -4,7 +4,7 @@ typedef struct {
 
     void* BaseAddress; // a void pointer holds the address of any type of variable
 
-    size_t BufferSize; // controls how big the buffer is (a buffer is a lil place of data)
+    size_t BufferSize; // controls how big the buffer is (a buffer is a little place of data)
 
     // A framebuffer (frame buffer, or sometimes framestore) is a portion of random-access memory (RAM) containing a bitmap that drives a video display.
 
@@ -221,22 +221,18 @@ void Logo(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 
 }
 
-// Kernel Panic
-void panic(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
-	if(framebuffer == 0){
-
-		Print(framebuffer, unicode_font, 0xFF0000, "PANIC FAILURE, Framebuffer either corrupted or missing");
-
-	}
-}
-
 void start(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 
 		// starts from top left corner of the screen start off with (0,0)
 
 		CharPosition.X = 0;
 
-		panic(framebuffer, unicode_font);
+		//Kernel Panic
+		if(Print == 0){
+
+			Print(framebuffer, unicode_font, 0xFF0000, "PANIC FAILURE, Framebuffer failed to print to screen");
+
+		}
 
 		Logo(framebuffer, unicode_font);
 
