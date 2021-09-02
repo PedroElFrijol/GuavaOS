@@ -227,6 +227,13 @@ void start(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 
 		CharPosition.X = 0;
 
+		//Kernel Panic
+		if(Print == 0){
+
+			Print(framebuffer, unicode_font, 0xFF0000, "PANIC FAILURE, Framebuffer failed to print to screen");
+
+		}
+
 		Logo(framebuffer, unicode_font);
 
         // bytes per pixel, each pixel is 4 bytes wide because it has a red green and alpha channel
