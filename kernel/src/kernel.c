@@ -1,12 +1,10 @@
-#define UNICODE
-
-typedef unsigned long long size_t; // type def makes a custom variable type
+typedef unsigned long long size_t;
 
 typedef struct {
 
     void* BaseAddress; // a void pointer holds the address of any type of variable
 
-    size_t BufferSize; // controls how big the buffer is (a buffer is a lil place of data)
+    size_t BufferSize; // controls how big the buffer is (a buffer is a little place of data)
 
     // A framebuffer (frame buffer, or sometimes framestore) is a portion of random-access memory (RAM) containing a bitmap that drives a video display.
 
@@ -102,14 +100,6 @@ void Print(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int co
 
 }
 
-//void newln(char* str) { // char pointer is used for a string with an unknown length
-	
-	// Print(str); 
-	 
-	// Print("\n"); 
-
-//}
-
 void println(){
 
 	CharPosition.X = 0;
@@ -120,6 +110,8 @@ void println(){
 
 void Logo(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 
+	println();
+	println();
 	Print(framebuffer, unicode_font, 0xFFFDD0, "   ____                         ___  ____  ");
 	println(); 
  	Print(framebuffer, unicode_font, 0xFFFDD0, " / ___|_   _  __ ___   ____ _ / _ \\/ ___| ");
