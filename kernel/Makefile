@@ -27,18 +27,13 @@ BOOTEFI := $(GNUEFI)/x86_64/bootloader/main.efi
 
 rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d)) #some wildcard bullshit that idk
 
-SRC = $(call rwildcard,$(SRCDIR),*.c)          
-OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
+SRC = $(call rwildcard,$(SRCDIR),*.cpp)          
+OBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC))
 DIRS = $(wildcard $(SRCDIR)/*)
 
 all: link kernel image run
 
 kernel: $(OBJS) link
-
-$(OBJDIR)/%.o: $(SRCDIR)/%.c #compiling C
-	@ echo COMPILING
-	@ mkdir -p $(@D) 
-	@$(CC) $(CFLAGS) -c $^ -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp #compiling c++
 	@ echo COMPILING $^
@@ -49,9 +44,7 @@ link:
 	@ echo LINKING
 	@$(LD) $(LDFLAGS) -o $(BUILDDIR)/kernel.elf $(OBJS)
 
-setup:
-	
-	#commands to make the computer make dirrectories 
+setup: #commands to make the computer make directories 
 	@mkdir -p $(BUILDDIR)
 	@mkdir -p $(SRCDIR)
 	@mkdir -p $(OBJDIR)

@@ -11,5 +11,7 @@
 #define ICW1_ICW4 0x01
 #define ICW4_8086 0x01
 
+bool isPageFault = false;
+
 struct interrupt_frame;
 __attribute__((interrupt)) void PageFault_Handler(interrupt_frame* frame);
