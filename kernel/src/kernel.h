@@ -1,4 +1,4 @@
-#pragma once
+#pragma once //cant redefine stuff
 #include <stddef.h>
 
 unsigned int y = 0;

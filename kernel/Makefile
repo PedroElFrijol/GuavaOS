@@ -31,12 +31,17 @@ SRC = $(call rwildcard,$(SRCDIR),*.cpp)
 OBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC))
 DIRS = $(wildcard $(SRCDIR)/*)
 
-all: link kernel image run
+all: kernel image run
 
 kernel: $(OBJS) link
 
+$(OBJDIR)/interrupt.o: $(SRCDIR)/interrupt.cpp
+	@ echo COMPILING interrupts $^
+	@ mkdir -p $(@D)
+	$(CC) -mno-red-zone -mgeneral-regs-only -ffreestanding -c $^ -o $@
+
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp #compiling c++
-	@ echo COMPILING $^
+	@ echo COMPILING C++ objects $^
 	@ mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $^ -o $@
 	

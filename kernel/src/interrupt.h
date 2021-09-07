@@ -1,4 +1,4 @@
-#pragma once
+#pragma once //cant redefine stuff
 
 //This code that connects to hardware interrupt to OS
 #define PIC1_COMMAND 0x20
