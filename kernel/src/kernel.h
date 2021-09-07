@@ -109,4 +109,5 @@ void println(){
 
 }
 
-extern "C" void start(Framebuffer* framebuffer, UNICODE_FONT* unicode_font);
+Framebuffer* framebuffer;
+UNICODE_FONT* unicode_font;

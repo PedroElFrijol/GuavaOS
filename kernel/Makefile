@@ -44,7 +44,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp #compiling c++
 	@ echo COMPILING C++ objects $^
 	@ mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $^ -o $@
-	
+
 link:
 	@ echo LINKING
 	@$(LD) $(LDFLAGS) -o $(BUILDDIR)/kernel.elf $(OBJS)
