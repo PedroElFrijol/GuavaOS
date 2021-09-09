@@ -213,6 +213,23 @@ PSF1_FONT* LoadPSF1_Font(EFI_FILE* Directory, CHAR16* Path, EFI_HANDLE ImageHand
 // y = *p;
 // *p = 2; // only changes X since "p" only points towards x not y
 
+int memcmp(const void* aptr, const void* bptr, size_t n){ //memcmp is memory compare and this is a function
+    const unsigned char* a = aptr, *b = bptr; // unsigned means only positive values are valid
+    for(size_t i = 0; i < n; i++){ // scanning through 2 buffers of memory and were scanning for the size of n
+        if(a[i] < b[i]) return -1;
+        else if (a[i] > b[i]) return 1;
+    }
+    return 0;
+}
+
+typedef struct {
+	Framebuffer* framebuffer;
+	PSF1_FONT* psf1_Font;
+	EFI_MEMORY_DESCRIPTOR* mMap; //mMap short for memory map
+	UINTN mMapSize; //memory map size
+	UINTN mMapDescSize; //memory map descriptor size
+} BootInfo;
+
 EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) { // EFI_STATUS is an int, EFI_SYSTEM_TABLE contains info and pointers to functions i need
 
     // pointer is a 64 bit int
@@ -242,21 +259,8 @@ EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) { //
 
     }
 
-    int memcmp(const void* aptr, const void* bptr, size_t n){ //memcmp is memory compare and this is a function
-
-        const unsigned char* a = aptr, *b = bptr; // unsigned means only positive values are valid
-
-        for(size_t i = 0; i < n; i++){ // scanning through 2 buffers of memory and were scanning for the size of n
-
-            if(a[i] < b[i]) return -1;
-            else if (a[i] > b[i]) return 1;
-
-        }
-        return 0;
-
-    }
-
     Elf64_Ehdr header; // created the elf header
+
     {
 
         UINTN FileInfoSize;
@@ -354,8 +358,6 @@ EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) { //
 
     Print(L"Kernel Loaded\n\r");
 
-    void (*KernelStart)(Framebuffer*, PSF1_FONT*) = ((__attribute__((sysv_abi)) void (*)(Framebuffer*, PSF1_FONT*) ) header.e_entry); // defining an integer function pointer
-
     PSF1_FONT* newFont = LoadPSF1_Font(NULL, L"Unifont-APL8x16-13.0.06.psf", ImageHandle, SystemTable);
     
     if(newFont == NULL){
@@ -390,6 +392,31 @@ EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) { //
         // 112 + 15 = 127
 
     // EFI_SUCCESS, The requested command completed successfully.
+
+    EFI_MEMORY_DESCRIPTOR* Map = NULL; //a pointer to the memory despriptor struct which has number of pages, physical address, and type of the memory section
+    UINTN MapSize, MapKey; //MapSize is just the complete size of the map in bytes and the mapkey is something we need in uefi
+    UINTN DescriptorSize; //How big each descriptor entry is
+    UINT32 DescriptorVersion; //the version of the descriptor struct
+	{
+		
+		SystemTable->BootServices->GetMemoryMap(&MapSize, Map, &MapKey, &DescriptorSize, &DescriptorVersion); //gives us the mapsize and mapkey
+		SystemTable->BootServices->AllocatePool(EfiLoaderData, MapSize, (void**)&Map);
+		SystemTable->BootServices->GetMemoryMap(&MapSize, Map, &MapKey, &DescriptorSize, &DescriptorVersion);
+
+	}
+
+    void (*KernelStart)(BootInfo*) = ((__attribute__((sysv_abi)) void (*)(BootInfo*) ) header.e_entry); // defining an integer function pointer
+
+    BootInfo bootInfo;
+	bootInfo.framebuffer = newBuffer;
+	bootInfo.psf1_Font = newFont;
+	bootInfo.mMap = Map;
+	bootInfo.mMapSize = MapSize;
+	bootInfo.mMapDescSize = DescriptorSize;
+
+    SystemTable->BootServices->ExitBootServices(ImageHandle, MapKey); //Exit BootServices
+
+    KernelStart(&bootInfo); //address of BootInfo
 
     return EFI_SUCCESS; // Exit the UEFI application
 }

@@ -1,5 +1,6 @@
 #pragma once //cant redefine stuff
 #include <stddef.h>
+#include <stdint.h> //defines things such as uint64_t
 
 unsigned int y = 0;
 
@@ -108,6 +109,16 @@ void println(){
 	CharPosition.Y += 16;
 
 }
+
+struct BootInfo{
+	Framebuffer* framebuffer;
+	UNICODE_FONT* psf1_Font;
+	void* mMap; //mMap short for memory map
+	uint64_t mMapSize; //memory map size, UINTN = uint64_t
+	uint64_t mMapDescSize; //memory map descriptor size
+};
+
+BootInfo* bootInfo;
 
 Framebuffer* framebuffer;
 UNICODE_FONT* unicode_font;
