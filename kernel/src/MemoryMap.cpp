@@ -1,6 +1,6 @@
 #include "MemoryMap.h"
 
-const char* EFI_MEMORY_TYPE_STRINGS[] { //Strings inside the struct 
+const char* EFI_MEMORY_TYPE_STRINGS[] { //Shows what data is in use
 
     "EfiReservedMemoryType",
     "EfiLoaderCode",

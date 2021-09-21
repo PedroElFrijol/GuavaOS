@@ -1,5 +1,4 @@
 #pragma once //cant redefine stuff
-#include "kernel.h"
 #include "Panic.h"
 
 //This code that connects to hardware interrupt to OS, this is also 8259 Programmable Interrupt controller (PIC)
