@@ -1,5 +1,5 @@
 #pragma once //cant redefine stuff
-#include "Panic.h"
+#include "../Panic.h"
 
 //This code that connects to hardware interrupt to OS, this is also 8259 Programmable Interrupt controller (PIC)
 #define PIC1_COMMAND 0x20
@@ -13,8 +13,9 @@
 #define ICW4_8086 0x01
 struct interrupt_frame;
 
-__attribute__((interrupt)) void PageFault_Handler(interrupt_frame* frame){
-    //your panic code here
-    Panic("KERNEL PANIC - Page Fault detected");
-    while(1){}
+__attribute__((interrupt)) void PageFault(interrupt_frame* frame){
+    Panic("KERNEL PANIC! Page Fault detected!");
+    while(1);
 }
+
+__attribute__((interrupt)) void KeyboardInterrupt(interrupt_frame* frame);

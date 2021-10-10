@@ -1,6 +1,7 @@
 #pragma once //cant redefine stuff
 #include <stddef.h>
 #include <stdint.h> //defines things such as uint64_t
+#include "math.h"
 
 unsigned int y = 0;
 
@@ -44,14 +45,6 @@ typedef struct {
 
 } UNICODE_FONT;
 
-typedef struct{
-
-    unsigned int X;
-
-    unsigned int Y;
-
-} Coordinates; // naming the typedef
-
 void putChar(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int color, char chr, unsigned int xOff, unsigned int yOff){
 
     unsigned int* pixPtr = (unsigned int*)framebuffer->BaseAddress; // fixes an error in C
@@ -75,8 +68,6 @@ void putChar(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int 
 
 }
 
-Coordinates CharPosition;
-
 void Print(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int color, const char* str) { // str short for string
 
     char* chr = (char*)str; // we have a pointer because if we did not we would noly be able to print one character
@@ -93,20 +84,10 @@ void Print(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int co
             CharPosition.Y += 16;
 
         }
-
         chr++;
-
     }
 
     y += 16; // if it was in the loop it would print a character and keep going into a new line
-
-}
-
-void println(){
-
-	CharPosition.X = 0;
-
-	CharPosition.Y += 16;
 
 }
 
