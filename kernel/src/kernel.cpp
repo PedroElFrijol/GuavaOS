@@ -1,7 +1,6 @@
 #include "kernel.h"
 #include "Logo.h"
 #include "MemoryMap.h"
-#include "MemoryPrint.h"
 
 extern "C" void start(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 
@@ -9,13 +8,7 @@ extern "C" void start(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
 
 		CharPosition.X = 0;
 
-		//Logo(framebuffer, unicode_font);
-
-		uint64_t mMapEntries = bootInfo->mMapSize / bootInfo->mMapDescSize;
-		for (int i = 0; i < mMapEntries; i++){
-			EFI_MEMORY_DESCRIPTOR* desc = (EFI_MEMORY_DESCRIPTOR*)((uint64_t)bootInfo->mMap + (i * bootInfo->mMapDescSize));		
-			Print(framebuffer, unicode_font, 0xFFFDD0, EFI_MEMORY_TYPE_STRINGS[desc->type]); //printing the Memory map to the the screen
-		}
+		Logo(framebuffer, unicode_font);
 
         // bytes per pixel, each pixel is 4 bytes wide because it has a red green and alpha channel
 

@@ -15,7 +15,5 @@ struct interrupt_frame;
 
 __attribute__((interrupt)) void PageFault(interrupt_frame* frame){
     Panic("KERNEL PANIC! Page Fault detected!");
-    while(1);
+    while(1){}
 }
-
-__attribute__((interrupt)) void KeyboardInterrupt(interrupt_frame* frame);
