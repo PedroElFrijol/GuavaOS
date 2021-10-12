@@ -18,3 +18,8 @@ typedef struct IDTR{
     uint64_t    base;
 } IDTR;
 #pragma pop
+
+struct IDTEntry idt[256]; //max amount of interrupts
+struct IDTR idtp; //IDT pointer
+void idt_set_gate(char vector, void *isr, char flags);
+void idt_install();
