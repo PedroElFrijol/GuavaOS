@@ -25,5 +25,7 @@
   GNU EFI being removed soon in the future and will be replaced with a uefi bootloader called chadx86 (chadx86 is also being worked on)
   
   Keyboard input
+  
+  Paging
 
 ![Capture](https://user-images.githubusercontent.com/45809332/137646307-5a8c6a3d-ba0d-44ca-b18c-c1f45d16533c.PNG)
