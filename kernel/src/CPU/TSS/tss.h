@@ -1,4 +1,5 @@
-//Task State Segment
+//Task State Segment (a special data structure for x86)
+//This is mainly for hardware multitasking where each process has its own TSS
 
 typedef struct TSS_64
 {

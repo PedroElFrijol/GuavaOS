@@ -17,8 +17,7 @@ void *move_mem(void *ptr, int value, int num)
 {
  unsigned char *ptr_byte = (unsigned char *)ptr;
 
- for (int i = 0; i < num; ptr_byte[i] = (unsigned char)value, i++)
-  ;
+ for (int i = 0; i < num; ptr_byte[i] = (unsigned char)value, i++);
  return ptr;
 }
 
