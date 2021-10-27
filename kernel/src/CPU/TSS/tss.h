@@ -1,5 +1,6 @@
 //Task State Segment (a special data structure for x86)
 //This is mainly for hardware multitasking where each process has its own TSS
+#include <stdint.h>
 
 typedef struct TSS_64
 {
@@ -22,6 +23,6 @@ typedef struct TSS_64
     uint16_t reserved3;
     uint16_t iomap;
 
-} __attribute__((packed));
+} TSS_64 __attribute__((packed));
 
-TSS_64 *tss
+TSS_64* tss;

@@ -30,6 +30,9 @@ SRC = $(call rwildcard,$(SRCDIR),*.cpp)
 OBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC))
 DIRS = $(wildcard $(SRCDIR)/*)
 
+SRC = $(call rwildcard,$(SRCDIR),*.c)          
+OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
+
 all: kernel image run
 
 kernel: $(OBJS) link
@@ -41,6 +44,11 @@ $(OBJDIR)/interrupt.o: $(SRCDIR)/interrupt.cpp
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp #compiling c++
 	@ echo COMPILING C++ objects $^
+	@ mkdir -p $(@D)
+	$(CC) $(CFLAGS) -c $^ -o $@
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c #compiling c
+	@ echo COMPILING C objects $^
 	@ mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $^ -o $@
 
