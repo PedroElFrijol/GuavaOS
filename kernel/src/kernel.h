@@ -1,7 +1,7 @@
 #pragma once //cant redefine stuff
 #include <stddef.h>
 #include <stdint.h> //defines things such as uint64_t
-#include "math.h"
+#include "math.h" 
 
 unsigned int y = 0;
 
