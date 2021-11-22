@@ -1,4 +1,5 @@
 #include "tss.h"
+#include "../../string.hpp"
 
 void Start_TSS()
 {
