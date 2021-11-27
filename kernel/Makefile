@@ -1,7 +1,8 @@
 OSNAME = GuavaOS
 
 #FOLDERS AND VARIABLES
-GNUEFI = ../gnu-efi
+#GNUEFI = ../gnu-efi
+CHADX86 = ../chadx86
 OVMFDIR = ../OVMFbin
 
 # VARIABLES
@@ -22,7 +23,8 @@ FONTDIR = UnifontText
 
 #bin is short for binaries
 
-BOOTEFI := $(GNUEFI)/x86_64/bootloader/main.efi
+#BOOTEFI := $(GNUEFI)/x86_64/bootloader/main.efi
+BOOTEFI := $(CHADX86)/disk/EFI/Boot/BOOTX64.EFI
 
 rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d)) #some wildcard bullshit that idk
 
