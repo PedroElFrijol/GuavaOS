@@ -1,6 +1,5 @@
 //Alot of the comments are from the UEFI Specs 2.9, some comments are added in, I am also not using EFIAPI
 //UEFI Specs is the reference I used for the code (PedroElFrijol)
-
 #define EFI_SUCCESS 0 //Also similar to Return 0, you could use that if you'd like
 
 //UEFI Data Types
@@ -59,7 +58,6 @@ typedef struct EFI_GUID
     UINT16    Data3;
     UINT8     Data4[8];
 } EFI_GUID;
-
 struct EFI_GUID EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID    = {0x9042a9de, 0x23dc, 0x4a38, {0x96, 0xfb, 0x7a, 0xde, 0xd0, 0x80, 0x51, 0x6a}};
 
 typedef struct EFI_TABLE_HEADER
@@ -72,19 +70,22 @@ typedef struct EFI_TABLE_HEADER
 } EFI_TABLE_HEADER;
 
 typedef unsigned short int  uint16_t;
+
 typedef unsigned short int  uint_least16_t;
+
 typedef uint_least16_t          CHAR16;
 
 typedef unsigned int        UINT32;
+
 typedef unsigned long long  UINT64;
 
 typedef unsigned char       BOOLEAN;
 
 typedef void                *EFI_HANDLE;
+
 typedef UINT64              EFI_STATUS;
 
 typedef UINT64 EFI_PHYSICAL_ADDRESS;
-
 
 typedef struct EFI_SIMPLE_TEXT_INPUT_PROTOCOL {} EFI_SIMPLE_TEXT_INPUT_PROTOCOL;
 
@@ -99,10 +100,9 @@ typedef struct EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL
     EFI_TEXT_RESET      Reset;
     EFI_TEXT_STRING     OutputString;
 } EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL;
-
 typedef struct {  
     EFI_TABLE_HEADER             Hdr;
- } EFI_RUNTIME_SERVICES;
+} EFI_RUNTIME_SERVICES;
 
  typedef struct{ 
     EFI_GUID            VendorGuid; //The 128-bit GUID value that uniquely identifies the system configuration table.
@@ -170,6 +170,7 @@ typedef struct EFI_OPEN_PROTOCOL_INFORMATION_ENTRY
 //EFI_MEMORY_TYPE
 //*******************************************************
 // These type values are discussed in Table 29 and Table 30.
+
 typedef enum {
     EfiReservedMemoryType,  
     EfiLoaderCode,  
@@ -196,7 +197,6 @@ typedef enum {
 | |_) | (_) | (_) | |_ ___) |  __/ |   \ V /| | (_|  __/\__ \ 
 |____/ \___/ \___/ \__|____/ \___|_|    \_/ |_|\___\___||___/ 
 */
-
 //Defining things inside BootServices, the first typedef defined is on page 157
 typedef EFI_STATUS (*EFI_RAISE_TPL)( // The new task priority level. It must be greater than or equal to the current task priority level. See “Related Definitions.”
     EFI_TPL NewTpl
@@ -372,11 +372,13 @@ typedef EFI_STATUS (*EFI_CONNECT_CONTROLLER)(
     EFI_DEVICE_PATH_PROTOCOL *RemainingDevicePath, 
     BOOLEAN Recursive
 );
+
 typedef EFI_STATUS (*EFI_DISCONNECT_CONTROLLER)(
     EFI_HANDLE ControllerHandle, 
     EFI_HANDLE DriverImageHandle, 
     EFI_HANDLE ChildHandle
 );
+
 typedef EFI_STATUS (*EFI_OPEN_PROTOCOL)(EFI_HANDLE Handle, 
     EFI_GUID *Protocol, 
     void **Interface, 
@@ -432,6 +434,7 @@ typedef EFI_STATUS (*EFI_CALCULATE_CRC32)(
     UINTN DataSize, 
     UINT32 *Crc32
 );
+
 typedef EFI_STATUS (*EFI_COPY_MEM)(
     void *Destination, 
     void *Source, 
@@ -536,7 +539,6 @@ typedef struct {
 } EFI_BOOT_SERVICES;
 
 //END OF BOOTSERVICES
-
 /*
   __  __                                   __  __                 
  |  \/  | ___ _ __ ___   ___  _ __ _   _  |  \/  | __ _ _ __  ___ 
@@ -545,7 +547,6 @@ typedef struct {
  |_|  |_|\___|_| |_| |_|\___/|_|   \__, | |_|  |_|\__,_| .__/|___/
                                    |___/               |_|        
 */
-
 typedef struct {
 	EFI_MEMORY_DESCRIPTOR* mMap; //mMap short for memory map
 	UINTN mMapSize; //memory map size
@@ -573,7 +574,6 @@ typedef struct EFI_SYSTEM_TABLE
 } EFI_SYSTEM_TABLE;
 
 EFI_SYSTEM_TABLE *SystemTable; //pointer to EFI_SYSTEM_TABLE
-
 EFI_HANDLE ImageHandle; //pointer to EFI_HANDLE
 
 /*   _____  ____  _____  
@@ -635,10 +635,10 @@ typedef struct {
 
 //Defining QUERY MODE
 typedef EFI_STATUS (*EFI_GRAPHICS_OUTPUT_PROTOCOL_QUERY_MODE) (
- EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE *This, //The EFI_GRAPHICS_OUTPUT_PROTOCOL instance. Type EFI_GRAPHICS_OUTPUT_PROTOCOL is defined in this section.
- UINT32 ModeNumber, //The mode number to return information on.
- UINTN *SizeOfInfo, //A pointer to the size, in bytes, of the Info buffer. 
- EFI_GRAPHICS_OUTPUT_MODE_INFORMATION **Info //A pointer to a callee allocated buffer that returns information about ModeNumber.
+    EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE *This, //The EFI_GRAPHICS_OUTPUT_PROTOCOL instance. Type EFI_GRAPHICS_OUTPUT_PROTOCOL is defined in this section.
+    UINT32 ModeNumber, //The mode number to return information on.
+    UINTN *SizeOfInfo, //A pointer to the size, in bytes, of the Info buffer. 
+    EFI_GRAPHICS_OUTPUT_MODE_INFORMATION **Info //A pointer to a callee allocated buffer that returns information about ModeNumber.
  );
 
  //Defining SET MODE
