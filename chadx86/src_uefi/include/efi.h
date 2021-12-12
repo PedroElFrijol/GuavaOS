@@ -58,7 +58,42 @@ typedef struct EFI_GUID
     UINT16    Data3;
     UINT8     Data4[8];
 } EFI_GUID;
+
+//all guids in the uefi
 struct EFI_GUID EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID    = {0x9042a9de, 0x23dc, 0x4a38, {0x96, 0xfb, 0x7a, 0xde, 0xd0, 0x80, 0x51, 0x6a}};
+
+struct EFI_GUID EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_GUID = {0x387477c2,0x69c7,0x11d2, {0x8e,0x39,0x00,0xa0,0xc9,0x69,0x72,0x3b}};
+
+struct EFI_GUID EFI_LOADED_IMAGE_PROTOCOL_GUID       = {0x5b1b31a1,  0x9562, 0x11d2, {0x8e, 0x3f, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b}};
+
+struct EFI_GUID EFI_SIMPLE_FILE_SYSTEM_PROTOCOL_GUID = {0x0964e5b22, 0x6459, 0x11d2, {0x8e, 0x39, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b}};
+
+struct EFI_GUID EFI_DEVICE_PATH_PROTOCOL_GUID        = {0x09576e91,  0x6d3f, 0x11d2, {0x8e, 0x39, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b}};
+
+struct EFI_GUID EFI_LOAD_FILE_PROTOCOL_GUID          = {0x56EC3091,0x954C,0x11d2, {0x8e,0x3f,0x00,0xa0, 0xc9,0x69,0x72,0x3b}};
+
+typedef struct EFI_TIME
+{
+	UINT16     Year;
+	UINT8      Month;
+	UINT8      Day;
+	UINT8      Hour;
+	UINT8      Minute;
+	UINT8      Second;
+	UINT8      Pad1;
+	UINT32     Nanosecond;
+	UINT16     TimeZone;
+	UINT8      DayLight;
+	UINT8      Pad2;
+} EFI_TIME;
+
+//declaring it so it does not have errors in future code
+typedef struct EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL;
+typedef struct EFI_SIMPLE_TEXT_INPUT_PROTOCOL EFI_SIMPLE_TEXT_INPUT_PROTOCOL;
+typedef struct EFI_SIMPLE_FILE_SYSTEM_PROTOCOL EFI_SIMPLE_FILE_SYSTEM_PROTOCOL;
+typedef struct EFI_FILE_PROTOCOL EFI_FILE_PROTOCOL;
+typedef struct EFI_SIMPLE_FILE_SYSTEM_PROTOCOL EFI_SIMPLE_FILE_SYSTEM_PROTOCOL;
+typedef struct EFI_LOAD_FILE_PROTOCOL EFI_LOAD_FILE_PROTOCOL;
 
 typedef struct EFI_TABLE_HEADER
 {
@@ -87,19 +122,25 @@ typedef UINT64              EFI_STATUS;
 
 typedef UINT64 EFI_PHYSICAL_ADDRESS;
 
-typedef struct EFI_SIMPLE_TEXT_INPUT_PROTOCOL {} EFI_SIMPLE_TEXT_INPUT_PROTOCOL;
+//an empty struct
+typedef struct EFI_SIMPLE_TEXT_INPUT_PROTOCOL {} EFI_SIMPLE_TEXT_INPUT_PROTOCOL; //This protocol is used to control text-based output devices.
 
-struct EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL;
+typedef EFI_STATUS (*EFI_TEXT_RESET)( //resets string output
+    EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *This, 
+    BOOLEAN ExtendedVerification
+);
 
-typedef EFI_STATUS (*EFI_TEXT_RESET)(struct EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *This, BOOLEAN ExtendedVerification);
-
-typedef EFI_STATUS (*EFI_TEXT_STRING)(struct EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *This, CHAR16 *String);
+typedef EFI_STATUS (*EFI_TEXT_STRING)(
+    EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *This, 
+    CHAR16 *String
+);
 
 typedef struct EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL
 {
     EFI_TEXT_RESET      Reset;
     EFI_TEXT_STRING     OutputString;
 } EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL;
+
 typedef struct {  
     EFI_TABLE_HEADER             Hdr;
 } EFI_RUNTIME_SERVICES;
@@ -189,6 +230,113 @@ typedef enum {
     EfiPersistentMemory,  
     EfiMaxMemoryType
 } EFI_MEMORY_TYPE;
+
+/*
+
+  ______ _ _         _____           _                 
+ |  ____(_) |       / ____|         | |                
+ | |__   _| | ___  | (___  _   _ ___| |_ ___ _ __ ___  
+ |  __| | | |/ _ \  \___ \| | | / __| __/ _ \ '_ ` _ \ 
+ | |    | | |  __/  ____) | |_| \__ \ ||  __/ | | | | |
+ |_|    |_|_|\___| |_____/ \__, |___/\__\___|_| |_| |_|
+                            __/ |                      
+                           |___/                       
+*/
+
+typedef EFI_STATUS (*EFI_FILE_OPEN)(
+    EFI_FILE_PROTOCOL *This, 
+    EFI_FILE_PROTOCOL **NewHandle, 
+    CHAR16 *FileName, 
+    UINT64 OpenMode, 
+    UINT64 Attributes
+);
+
+typedef EFI_STATUS (*EFI_FILE_CLOSE)(
+    EFI_FILE_PROTOCOL *This
+);
+
+typedef EFI_STATUS (*EFI_FILE_DELETE)(
+    EFI_FILE_PROTOCOL *This
+);
+
+typedef EFI_STATUS (*EFI_FILE_READ)(
+    EFI_FILE_PROTOCOL *This, 
+    UINTN *BufferSize, 
+    void *Buffer
+);
+
+typedef EFI_STATUS (*EFI_FILE_WRITE)(
+    EFI_FILE_PROTOCOL *This, 
+    UINTN *BufferSize, 
+    void *Buffer
+);
+
+typedef EFI_STATUS (*EFI_FILE_GET_POSITION)(
+    EFI_FILE_PROTOCOL *This, 
+    UINT64 *Position
+);
+
+typedef EFI_STATUS (*EFI_FILE_SET_POSITION)(
+    EFI_FILE_PROTOCOL *This, 
+    UINT64 Position
+);
+
+typedef EFI_STATUS (*EFI_FILE_GET_POSITION)(
+    EFI_FILE_PROTOCOL *This, 
+    UINT64 *Position
+);
+
+typedef EFI_STATUS (*EFI_FILE_SET_POSITION)(
+    EFI_FILE_PROTOCOL *This, 
+    UINT64 Position
+);
+
+//////////
+
+typedef EFI_STATUS (*EFI_SIMPLE_FILE_SYSTEM_PROTOCOL_OPEN_VOLUME)(
+    EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *This, 
+    EFI_FILE_PROTOCOL **Root
+);
+
+typedef struct EFI_SIMPLE_FILE_SYSTEM_PROTOCOL {
+    UINT64                                      Revision;
+    EFI_SIMPLE_FILE_SYSTEM_PROTOCOL_OPEN_VOLUME OpenVolume;
+} EFI_SIMPLE_FILE_SYSTEM_PROTOCOL;
+
+typedef EFI_STATUS(*EFI_LOAD_FILE) (
+    EFI_LOAD_FILE_PROTOCOL *This,
+    EFI_DEVICE_PATH_PROTOCOL *FilePath,
+    BOOLEAN BootPolicy,
+    UINTN *BufferSize,
+    void *Buffer
+);
+
+typedef struct EFI_LOAD_FILE_PROTOCOL {
+    EFI_LOAD_FILE LoadFile;
+} EFI_LOAD_FILE_PROTOCOL;
+
+typedef struct EFI_FILE_PROTOCOL
+{
+    UINT64                  Revision;
+    EFI_FILE_OPEN           Open;
+    EFI_FILE_CLOSE          Close;
+    EFI_FILE_DELETE         Delete;
+    EFI_FILE_READ           Read;
+    EFI_FILE_WRITE          Write;
+    EFI_FILE_GET_POSITION   GetPosition;
+    EFI_FILE_SET_POSITION   SetPosition;
+} EFI_FILE_PROTOCOL;
+
+typedef struct {
+    UINT64    Size;
+    UINT64    FileSize;
+    UINT64    PhysicalSize;
+    EFI_TIME  CreateTime;
+    EFI_TIME  LastAccessTime;
+    EFI_TIME  ModificationTime;
+    UINT64    Attribute;
+    CHAR16    FileName[];
+} EFI_FILE_INFO;
 
 /* 
  ____              _   ____                  _               
@@ -583,6 +731,20 @@ EFI_HANDLE ImageHandle; //pointer to EFI_HANDLE
  | |__| | |__| | |     
   \_____|\____/|_|     
 */
+
+typedef struct EFI_LOADED_IMAGE_PROTOCOL
+{
+    UINT32                      Revision;
+    EFI_HANDLE                  ParentHandle;
+    EFI_SYSTEM_TABLE            *SystemTable;
+    EFI_HANDLE                  DeviceHandle;
+    EFI_DEVICE_PATH_PROTOCOL    *FilePath;
+    void                        *Reserved;
+    UINT32                      LoadOptionsSize;
+    void                        *LoadOptions;
+    void                        *ImageBase;
+    UINT64                      ImageSize;
+} EFI_LOADED_IMAGE_PROTOCOL;
 
  typedef enum { //Enumeration (enum) is a user defined datatype in C language
     EfiBltVideoFill, 

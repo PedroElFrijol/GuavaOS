@@ -26,7 +26,7 @@ FONTDIR = UnifontText
 #BOOTEFI := $(GNUEFI)/x86_64/bootloader/main.efi
 BOOTEFI := $(CHADX86)/disk/EFI/Boot/BOOTX64.EFI
 
-rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d)) #some wildcard bullshit that idk
+rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
 
 SRC = $(call rwildcard,$(SRCDIR),*.cpp)          
 OBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC))
@@ -68,7 +68,7 @@ mkdir: #commands to make the computer make directories
 
 image:
 
-	@# generates an disk image
+	@# generates a disk image
 	
 	@dd if=/dev/zero of=$(BUILDDIR)/$(OSNAME).img bs=512 count=93750 # generates a blank image
 	@mformat -i $(BUILDDIR)/$(OSNAME).img -f 1440 :: # takes that blank image and formats it into a disk image 
