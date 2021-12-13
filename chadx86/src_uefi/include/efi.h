@@ -1,3 +1,4 @@
+#pragma once
 //Alot of the comments are from the UEFI Specs 2.9, some comments are added in, I am also not using EFIAPI
 //UEFI Specs is the reference I used for the code (PedroElFrijol)
 #define EFI_SUCCESS 0 //Also similar to Return 0, you could use that if you'd like
@@ -59,18 +60,6 @@ typedef struct EFI_GUID
     UINT8     Data4[8];
 } EFI_GUID;
 
-//all guids in the uefi
-struct EFI_GUID EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID    = {0x9042a9de, 0x23dc, 0x4a38, {0x96, 0xfb, 0x7a, 0xde, 0xd0, 0x80, 0x51, 0x6a}};
-
-struct EFI_GUID EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_GUID = {0x387477c2,0x69c7,0x11d2, {0x8e,0x39,0x00,0xa0,0xc9,0x69,0x72,0x3b}};
-
-struct EFI_GUID EFI_LOADED_IMAGE_PROTOCOL_GUID       = {0x5b1b31a1,  0x9562, 0x11d2, {0x8e, 0x3f, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b}};
-
-struct EFI_GUID EFI_SIMPLE_FILE_SYSTEM_PROTOCOL_GUID = {0x0964e5b22, 0x6459, 0x11d2, {0x8e, 0x39, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b}};
-
-struct EFI_GUID EFI_DEVICE_PATH_PROTOCOL_GUID        = {0x09576e91,  0x6d3f, 0x11d2, {0x8e, 0x39, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b}};
-
-struct EFI_GUID EFI_LOAD_FILE_PROTOCOL_GUID          = {0x56EC3091,0x954C,0x11d2, {0x8e,0x3f,0x00,0xa0, 0xc9,0x69,0x72,0x3b}};
 
 typedef struct EFI_TIME
 {
@@ -695,13 +684,9 @@ typedef struct {
  |_|  |_|\___|_| |_| |_|\___/|_|   \__, | |_|  |_|\__,_| .__/|___/
                                    |___/               |_|        
 */
-typedef struct {
-	EFI_MEMORY_DESCRIPTOR* mMap; //mMap short for memory map
-	UINTN mMapSize; //memory map size
-	UINTN mMapDescSize; //memory map descriptor size
-} BootInfo;
 
-BootInfo* bootInfo;
+
+//BootInfo* bootInfo;
 
 typedef struct EFI_SYSTEM_TABLE
 {
@@ -721,8 +706,8 @@ typedef struct EFI_SYSTEM_TABLE
     
 } EFI_SYSTEM_TABLE;
 
-EFI_SYSTEM_TABLE *SystemTable; //pointer to EFI_SYSTEM_TABLE
-EFI_HANDLE ImageHandle; //pointer to EFI_HANDLE
+extern EFI_SYSTEM_TABLE *SystemTable; //pointer to EFI_SYSTEM_TABLE
+extern EFI_HANDLE *ImageHandle; //pointer to EFI_HANDLE
 
 /*   _____  ____  _____  
   / ____|/ __ \|  __ \ 
@@ -822,8 +807,6 @@ typedef EFI_STATUS (*EFI_GRAPHICS_OUTPUT_PROTOCOL_QUERY_MODE) (
     UINTN Delta //Not used for EfiBltVideoFill or the EfiBltVideoToVideo operation. If a Delta of zero is used, the entire BltBuffer is being operated on.
 );
 
-EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE *gop;
-
 //12.9 Graphics Output Protocol in UEFI specs 2.8B
 typedef struct EFI_GRAPHICS_OUTPUT_PROTCOL { //GOP
     EFI_GRAPHICS_OUTPUT_PROTOCOL_QUERY_MODE QueryMode; //Returns information for an available graphics mode that the graphics device and the set of active video output devices supports.
@@ -832,7 +815,4 @@ typedef struct EFI_GRAPHICS_OUTPUT_PROTCOL { //GOP
     EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE *Mode; //Pointer to EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE data.
 } EFI_GRAPHICS_OUTPUT_PROTOCOL;
 
-void Print(CHAR16* str)
-{
-    SystemTable->ConOut->OutputString(SystemTable->ConOut, str);
-}
+void Print(CHAR16* str);

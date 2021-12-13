@@ -36,13 +36,16 @@ $(BUILDDIR)/%.s.o: $(SRCDIR)/%.s
 	@echo [$(AS)][$<]
 	@$(AS) $(ASFLAGS) $< -o $@
 
-disk: build
+disk: bexample build
 	-@mkdir ./disk
 	-@mkdir ./disk/EFI
 	-@mkdir ./disk/EFI/Boot
 	-@cp ./BOOTX64.EFI ./disk/EFI/Boot
-	-@cp kernel.elf ./disk
+	-@cp ./example/kernel.elf ./disk
 	python3 imgbuilder.py disk disk.img
+
+bexample:
+	cd example && make
 
 clean:
 	@rm -rf $(BUILDDIR) *.EFI disk

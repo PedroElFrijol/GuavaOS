@@ -1,0 +1,11 @@
+#pragma once
+
+#include <efi.h>
+
+extern struct EFI_GUID EFI_LOADED_IMAGE_PROTOCOL_GUID;
+
+extern struct EFI_GUID EFI_SIMPLE_FILE_SYSTEM_PROTOCOL_GUID;
+
+extern struct EFI_GUID EFI_DEVICE_PATH_PROTOCOL_GUID;
+
+extern struct EFI_GUID EFI_LOAD_FILE_PROTOCOL_GUID;
