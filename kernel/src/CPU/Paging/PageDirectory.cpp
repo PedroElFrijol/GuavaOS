@@ -1,8 +1,10 @@
 #include "paging.h"
 
-int e;
+void Pagedir(){
+    int e;
 
-for(e = 0; e < 1024; e++){
+    for(e = 0; e < 1024; e++){
 
-    pageDir[e] = 0x00000002;
+        pageDir[e] = 0x00000002;
+    }
 }

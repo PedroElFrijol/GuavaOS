@@ -14,9 +14,9 @@ ret
 enablePaging:
 push %rbp
 mov rsp, %rbp
-mov %cr0, %rax
+mov %cr3, %rax
 or 0x80000000, %rax
-mov %rax, %cr0
+mov %rax, %cr3
 mov %rbp, %rsp
 pop %rbp
 ret
@@ -33,3 +33,4 @@ ret
 ;ret instruction transfers control to the return address located on the stack
 ;push places its operand onto the top of the hardware supported stack in memory
 ;cr0 is the control register for 32 bit
+;cr3 is the control register for paging
