@@ -32,8 +32,10 @@ SRC = $(call rwildcard,$(SRCDIR),*.cpp)
 OBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC))
 DIRS = $(wildcard $(SRCDIR)/*)
 
-SRC = $(call rwildcard,$(SRCDIR),*.c)          
-OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
+SRC += $(call rwildcard,$(SRCDIR),*.c)          
+OBJS += $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
+
+.PHONY: all kernel image run link mkdir clean
 
 all: kernel image run
 
@@ -56,6 +58,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c #compiling c
 
 link:
 	@ echo LINKING
+	@ echo $(SRC)
 	@$(LD) $(LDFLAGS) -o $(BUILDDIR)/kernel.elf $(OBJS)
 
 mkdir: #commands to make the computer make directories 
@@ -66,7 +69,7 @@ mkdir: #commands to make the computer make directories
 	
 	@# -p if the folder exists than it wont have seizure
 
-image:
+image: kernel
 
 	@# generates a disk image
 	
@@ -82,3 +85,6 @@ image:
 run:
 	qemu-system-x86_64 -drive file=$(BUILDDIR)/$(OSNAME).img -m 1G -cpu qemu64 -drive if=pflash,format=raw,unit=0,file="$(OVMFDIR)/OVMF_CODE-pure-efi.fd",readonly=on -drive if=pflash,format=raw,unit=1,file="$(OVMFDIR)/OVMF_VARS-pure-efi.fd" -net none
 	@# tells the emulator to run the operating system on a VM
+
+clean:
+	-@rm -rf $(OBJDIR) $(BUILDDIR)
