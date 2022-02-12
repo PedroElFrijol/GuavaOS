@@ -8,5 +8,4 @@ namespace scancode_translations{
             return 0;
         }
     }
-
 }

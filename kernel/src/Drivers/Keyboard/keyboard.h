@@ -1,5 +1,6 @@
 #include <stdint.h> //defines things such as uint8_t
 
+//Scan Code Set 1
 static int keyboard_scancodes[66][2] { //66 keys in total
     
     0x02, '1', 0x03, '2', 0x04, '3', 0x05, '4', 0x06, '5', 0x07, '6', 0x08, '7', 0x09, '8', 0x0A, '9', 0x0B, '0', 0x0C, '-', 0x0D, '=', 0x0E, '\b',
