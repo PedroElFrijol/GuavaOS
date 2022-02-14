@@ -2,13 +2,13 @@
 #include "Logo.h"
 #include "MemoryMap.h"
 
-extern "C" void start(Framebuffer* framebuffer, UNICODE_FONT* unicode_font){
+extern "C" void start(Framebuffer* fb, FONT* font){
 
 		// starts from top left corner of the screen start off with (0,0)
 
 		CharPosition.X = 0;
 
-		Logo(framebuffer, unicode_font);
+		Logo(fb, font);
 
         // bytes per pixel, each pixel is 4 bytes wide because it has a red green and alpha channel
 

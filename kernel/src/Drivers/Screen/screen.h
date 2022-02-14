@@ -14,4 +14,4 @@ typedef struct screen{
 	int Y;
 	int dColor; //default color
 	char *VGA;
-};
+} screen;

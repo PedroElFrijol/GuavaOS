@@ -1,3 +1,4 @@
+#include "../../Drivers/Keyboard/keyboard.h"
 #include "screen.h"
 
 void initialize(){
@@ -38,7 +39,7 @@ void Clear(){
 	}
 }
 
-void PrintChar(){
+void PrintChar(char str, int color){
     if(str == '\t'){
         str = ' '; //tab pressed
     }
@@ -51,5 +52,5 @@ void PrintChar(){
 
 void print(char e)
 {
-	printChar(e, Screen->DefaultColor);
+	PrintChar(e, Screen->dColor);
 }
