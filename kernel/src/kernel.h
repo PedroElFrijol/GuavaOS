@@ -35,21 +35,21 @@ typedef struct {
 
     unsigned char charsize; // defines how large the characters are in bytes
 
-} UNICODE_HEADER; // this is what the typedef is called
+} FONT_HEADER; // this is what the typedef is called
 
 typedef struct {
 
-    UNICODE_HEADER* unicode_header;
+    FONT_HEADER* fontHdr;
 
     void* glyphBuffer; // keeps data about the piece of text or character
 
-} UNICODE_FONT;
+} FONT;
 
-void putChar(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int color, char chr, unsigned int xOff, unsigned int yOff){
+void putChar(Framebuffer* fb, FONT* font, unsigned int color, char chr, unsigned int xOff, unsigned int yOff){
 
-    unsigned int* pixPtr = (unsigned int*)framebuffer->BaseAddress; // fixes an error in C
+    unsigned int* pixPtr = (unsigned int*)fb->BaseAddress; // fixes an error in C
 
-    char* fontPtr = (char*)unicode_font->glyphBuffer + (chr * unicode_font->unicode_header->charsize); // we are getting the base address of the glyph buffer and then adding on the character times the characters size    
+    char* fontPtr = (char*)font->glyphBuffer + (chr * font->fontHdr->charsize); // we are getting the base address of the glyph buffer and then adding on the character times the characters size    
 
     for(unsigned long y = yOff; y < yOff + 16; y++){ // y = 16 because the height of every character is 16 pixels
 
@@ -57,43 +57,37 @@ void putChar(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int 
 
             if((*fontPtr & (0b10000000 >> (x - xOff))) > 0){ // bit shifting a single bit to the right by x minus the x offset
 
-                *(unsigned int*)(pixPtr + x + (y * framebuffer->PixelsPerScanLine)) = color;
+                *(unsigned int*)(pixPtr + x + (y * fb->PixelsPerScanLine)) = color;
 
             }
         }
-
         fontPtr++;
-
     }
-
 }
 
-void Print(Framebuffer* framebuffer, UNICODE_FONT* unicode_font, unsigned int color, const char* str) { // str short for string
+void Print(Framebuffer* fb, FONT* font, unsigned int color, const char* str) { // str short for string
 
     char* chr = (char*)str; // we have a pointer because if we did not we would noly be able to print one character
 
     while(*chr != 0) { // checking if the address of str is not equal to 0
 
-        putChar(framebuffer, unicode_font, color, *chr, CharPosition.X, CharPosition.Y);
+        putChar(fb, font, color, *chr, CharPosition.X, CharPosition.Y);
 
         CharPosition.X += 8; // everytime you print a character the character moves to the right 8 pixels so it doesen't overlap
 
-        if(CharPosition.X >= framebuffer->Width){
+        if(CharPosition.X >= fb->Width){
 
             CharPosition.X = 0;
             CharPosition.Y += 16;
-
         }
         chr++;
     }
-
     y += 16; // if it was in the loop it would print a character and keep going into a new line
-
 }
 
 struct BootInfo{
-	Framebuffer* framebuffer;
-	UNICODE_FONT* psf1_Font;
+	Framebuffer* fb;
+	FONT* font;
 	void* mMap; //mMap short for memory map
 	uint64_t mMapSize; //memory map size, UINTN = uint64_t
 	uint64_t mMapDescSize; //memory map descriptor size
@@ -101,5 +95,5 @@ struct BootInfo{
 
 BootInfo* bootInfo;
 
-Framebuffer* framebuffer;
-UNICODE_FONT* unicode_font;
+Framebuffer* fb;
+FONT* font;
