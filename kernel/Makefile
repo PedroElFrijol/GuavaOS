@@ -1,4 +1,4 @@
-OSNAME = GuavaOS
+OSOSNAME = GuavaOS
 
 #FOLDERS AND VARIABLES
 #GNUEFI = ../gnu-efi
@@ -26,14 +26,19 @@ FONTDIR = UnifontText
 #BOOTEFI := $(GNUEFI)/x86_64/bootloader/main.efi
 BOOTEFI := $(CHADX86)/disk/EFI/Boot/BOOTX64.EFI
 
-rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
+#rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
 
-SRC = $(call rwildcard,$(SRCDIR),*.cpp)          
-OBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC))
+CPPSRC = $(shell find $(SRCDIR) -name '*.cpp')
+OBJS = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(CPPSRC))
+CSRC += $(shell find $(SRCDIR) -name '*.c')
+OBJS += $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(CSRC))
+
+
+
 DIRS = $(wildcard $(SRCDIR)/*)
 
-SRC += $(call rwildcard,$(SRCDIR),*.c)          
-OBJS += $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
+        
+
 
 .PHONY: all kernel image run link mkdir clean
 
@@ -56,9 +61,9 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c #compiling c
 	@ mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $^ -o $@
 
-link:
+link: mkdir
 	@ echo LINKING
-	@ echo $(SRC)
+	@echo $(OBJS) 
 	@$(LD) $(LDFLAGS) -o $(BUILDDIR)/kernel.elf $(OBJS)
 
 mkdir: #commands to make the computer make directories 
@@ -82,7 +87,7 @@ image: kernel
 	@mcopy -i $(BUILDDIR)/$(OSNAME).img $(BUILDDIR)/kernel.elf :: 
 	@mcopy -i $(BUILDDIR)/$(OSNAME).img $(FONTDIR)/Unifont-APL8x16-13.0.06.psf ::
 
-run:
+run: image
 	qemu-system-x86_64 -drive file=$(BUILDDIR)/$(OSNAME).img -m 1G -cpu qemu64 -drive if=pflash,format=raw,unit=0,file="$(OVMFDIR)/OVMF_CODE-pure-efi.fd",readonly=on -drive if=pflash,format=raw,unit=1,file="$(OVMFDIR)/OVMF_VARS-pure-efi.fd" -net none
 	@# tells the emulator to run the operating system on a VM
 
