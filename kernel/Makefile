@@ -32,13 +32,7 @@ CPPSRC = $(shell find $(SRCDIR) -name '*.cpp')
 OBJS = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(CPPSRC))
 CSRC += $(shell find $(SRCDIR) -name '*.c')
 OBJS += $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(CSRC))
-
-
-
 DIRS = $(wildcard $(SRCDIR)/*)
-
-        
-
 
 .PHONY: all kernel image run link mkdir clean
 

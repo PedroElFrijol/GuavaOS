@@ -6,8 +6,7 @@ void initialize(){
     Screen-> X = 0;
     Screen-> Y = 0;
 
-    char *VGA = (char *)0xB8000; //setting the memory buffer for the screen driver
-    (void)VGA;
+    Screen->VGA = (char *)0xB8000; //setting the memory buffer for the screen driver
     Screen->dColor = 0x06; //setting the default color of screen to brown
 }
 
