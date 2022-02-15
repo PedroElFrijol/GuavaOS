@@ -1,4 +1,4 @@
-OSSNAME = GuavaOS
+OSNAME = GuavaOS
 
 #FOLDERS AND VARIABLES
 #GNUEFI = ../gnu-efi
