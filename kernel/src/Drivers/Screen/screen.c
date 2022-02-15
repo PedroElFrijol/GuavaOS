@@ -7,6 +7,7 @@ void initialize(){
     Screen-> Y = 0;
 
     char *VGA = (char *)0xB8000; //setting the memory buffer for the screen driver
+    (void)VGA;
     Screen->dColor = 0x06; //setting the default color of screen to brown
 }
 
@@ -19,6 +20,7 @@ void ColorOfScreen(int color){
     DefaultColor(color); //setting the color
 
     char *VGA = (char *)0xB8000;
+    (void)VGA;
 }
 
 void BackSpace(){

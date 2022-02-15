@@ -1,9 +1,7 @@
 #include <stdint.h>
 
-uint64_t pageDir[1024] __attribute__((aligned(4096)));
+extern "C" uint64_t pageDir[1024] __attribute__((aligned(4096)));
 
-uint64_t PageTable1[1024] __attribute__((aligned(4096))); //the first page table
+extern "C" uint64_t PageTable1[1024] __attribute__((aligned(4096))); //the first page table
 
-void PageDirecotry(){
-    pageDir[0] = ((unsigned int)PageTable1) | 3; //putting the page table in the page directory
-}
+extern "C" void PageDirectory();
