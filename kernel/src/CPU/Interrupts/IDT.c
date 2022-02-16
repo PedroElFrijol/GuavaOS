@@ -1,14 +1,16 @@
 #include "IDT.h"
-#include <stdint.h>
+
+struct IDTEntry idt[256]; //max amount of interrupts
+struct IDTR idtp; //IDT pointer
 
 void idt_set_gate(char vector, void *isr, char flags)
 {
  struct IDTEntry *descriptor = &idt[vector];
 
- descriptor->isr_low = (unsigned int)isr & 0xFFFF;
+ descriptor->isr_low = (uint64_t)isr & 0xFFFF;
  descriptor->sel = 0x08; // this value can be whatever offset your kernel code selector is in your GDT
  descriptor->flags = flags;
- descriptor->isr_high = (unsigned int)isr >> 16;
+ descriptor->isr_high = (uint64_t)isr >> 16;
  descriptor->zero = 0;
 }
 /* Installs the IDT */
@@ -25,7 +27,7 @@ void idt_install()
 {
  /* Sets the special IDT pointer up, just like in 'gdt.c' */
  idtp.limit = (sizeof(struct IDTEntry) * 256) - 1;
- idtp.base = (int)&idt;
+ idtp.base = (uint64_t)&idt;
 
  /* Clear out the entire IDT, initializing it to zeros */
  move_mem(&idt, 0, sizeof(struct IDTEntry) * 256);

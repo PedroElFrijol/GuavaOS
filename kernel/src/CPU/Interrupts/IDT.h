@@ -1,7 +1,7 @@
 #pragma once
 #include <stdint.h>
 
-typedef struct IDTEntry{
+struct IDTEntry{
 	unsigned short isr_low; // The lower 16 bits of the ISR's address
 	unsigned short sel;    // Our kernel segment goes here!
 	unsigned char zero; // this will be set to zero
@@ -14,8 +14,6 @@ typedef struct IDTR{
     uint64_t    base;
 } IDTR;
 
-struct IDTEntry idt[256]; //max amount of interrupts
-struct IDTR idtp; //IDT pointer
 void idt_set_gate(char vector, void *isr, char flags);
 void idt_install();
 
