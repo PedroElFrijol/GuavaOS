@@ -114,3 +114,9 @@ void Logo(Framebuffer* framebuffer, FONT* font){
 	Print(fb, font, 0xFFFDD0, "                  .--////////::--:////////:::-:////////::.`				   ");
 	println();
 }
+
+void cp(){
+	CharPosition.X = 960;
+	CharPosition.Y = 0;
+	Print(fb, font, 0xFFFDD0, "Copyright © Marcelo Raul Rios Jr. 2022")
+}
