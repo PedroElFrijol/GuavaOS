@@ -19,7 +19,7 @@ LDFLAGS = -T $(LDS) -static -Bsymbolic -nostdlib
 SRCDIR := src
 OBJDIR := bin
 BUILDDIR = build
-FONTDIR = UnifontText
+FONTDIR = Font
 
 #bin is short for binaries
 
