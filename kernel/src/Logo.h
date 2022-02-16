@@ -1,7 +1,7 @@
 #pragma once
 #include "kernel.h"
 
-void Logo(Framebuffer* framebuffer, FONT* font){
+inline void Logo(Framebuffer* fb, FONT* font){
 
     for(int i = 0; i < 1e+9; i++){} //1 second in nanoseconds
 
@@ -115,8 +115,8 @@ void Logo(Framebuffer* framebuffer, FONT* font){
 	println();
 }
 
-void cp(){
+inline void Copyright(Framebuffer* fb, FONT* font){
 	CharPosition.X = 960;
-	CharPosition.Y = 0;
-	Print(fb, font, 0xFFFDD0, "Copyright © Marcelo Raul Rios Jr. 2022")
+	CharPosition.Y = -540;
+	Print(fb, font, 0xFFFDD0, "Copyright © Marcelo Raul Rios Jr. 2022");
 }

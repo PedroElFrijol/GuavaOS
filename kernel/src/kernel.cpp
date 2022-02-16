@@ -9,6 +9,7 @@ extern "C" void start(Framebuffer* fb, FONT* font){
 		CharPosition.X = 0;
 
 		Logo(fb, font);
+        Copyright(fb, font);
 
         // bytes per pixel, each pixel is 4 bytes wide because it has a red green and alpha channel
 
