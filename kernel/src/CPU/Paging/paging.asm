@@ -1,4 +1,3 @@
-.text
 .global Load_PageDir
 Load_PageDir:
 push %rbp
@@ -9,7 +8,6 @@ mov %rbp, %rsp
 pop %ebp
 ret
 
-.text 
 .global enablePaging
 enablePaging:
 push %rbp

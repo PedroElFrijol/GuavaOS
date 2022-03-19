@@ -27,4 +27,4 @@ __attribute((aligned(0x1000)));
 
 extern GDT MainGDT;
 
-void Load(GDTDesc* gdesc); //Loading GDT
+void load_gdt(GDTDesc* gdesc); //Loading GDT

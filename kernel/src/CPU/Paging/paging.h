@@ -1,3 +1,4 @@
+#pragma once
 #include <stdint.h>
 
 extern "C" uint64_t pageDir[1024] __attribute__((aligned(4096)));

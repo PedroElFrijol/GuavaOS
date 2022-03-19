@@ -1,5 +1,5 @@
 [bits 64] ; defining that this file is 64 bits
-Load:   
+load_gdt:   
     lgdt [rdi]
     mov ax, 0x10 
     mov ds, ax
@@ -12,7 +12,7 @@ Load:
     push rax
     push rdi
     retfq ; pops address and code segment
-GLOBAL Load
+GLOBAL load_gdt
 
 ; CS = Code Segment (used for IP)
 ; DS = Data Segment (used for MOV)

@@ -31,7 +31,7 @@ OBJS = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(CPPSRC))
 CSRC += $(shell find $(SRCDIR) -name '*.c')
 OBJS += $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(CSRC))
 ASMSRC += $(shell find $(SRCDIR) -name '*.asm')
-OBJS += $(patsubst $(SRCDIR)/%.asm, $(OBJDIR)/%.o, $(ASMSRC))
+OBJS += $(patsubst $(SRCDIR)/%.asm, $(OBJDIR)/%.asm_o, $(ASMSRC))
 DIRS = $(wildcard $(SRCDIR)/*)
 
 .PHONY: all kernel image run link mkdir clean
@@ -55,10 +55,10 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c #compiling c
 	@ mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $^ -o $@
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.asm #compiling assembly
+$(OBJDIR)/%.asm_o: $(SRCDIR)/%.asm #compiling assembly
 	@ echo COMPILING ASSEMBLY objectsc $^
 	@ mkdir -p $(@D)
-	NASM $(NASMFLAGS) -c $^ -o $@
+	$(NASM) $(NASMFLAGS) -felf64 $^ -o $@
 
  # $@ evaluates to all
  # $< evaluates to library.cpp
