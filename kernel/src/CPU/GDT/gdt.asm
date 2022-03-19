@@ -1,4 +1,4 @@
-[bits 64] # defining that this file is 64 bits
+[bits 64] ; defining that this file is 64 bits
 Load:   
     lgdt [rdi]
     mov ax, 0x10 
@@ -11,15 +11,15 @@ Load:
     mov rax, 0x08
     push rax
     push rdi
-    retfq # pops address and code segment
+    retfq ; pops address and code segment
 GLOBAL Load
 
-# CS = Code Segment (used for IP)
-# DS = Data Segment (used for MOV)
-# ES = Destination Segment (used for MOVS, etc.)
-# SS = Stack Segment (used for SP)
-# FS is used to point to the thread information block (TIB) on windows processes
-# GS is commonly used as a pointer to a thread local storage (TLS)
-# AX used in input/output and most arithmetic instruction
-# RDI = register destination index (destination for data copies)
-# RAX = return values in functions
+; CS = Code Segment (used for IP)
+; DS = Data Segment (used for MOV)
+; ES = Destination Segment (used for MOVS, etc.)
+; SS = Stack Segment (used for SP)
+; FS is used to point to the thread information block (TIB) on windows processes
+; GS is commonly used as a pointer to a thread local storage (TLS)
+; AX used in input/output and most arithmetic instruction
+; RDI = register destination index (destination for data copies)
+; RAX = return values in functions

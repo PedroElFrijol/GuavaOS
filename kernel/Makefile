@@ -10,18 +10,16 @@ OVMFDIR = ../OVMFbin
 LDS = kernel.ld # it is the linker script, it tells the linker what to do
 CC = gcc # (C Compiler) compiles the src files that you made in C or C++
 LD = ld #the linker, it links all of the object files together
+NASM = nasm
 
 CFLAGS = -ffreestanding -fshort-wchar -Wall
 LDFLAGS = -T $(LDS) -static -Bsymbolic -nostdlib
-
-# a flag is a command line option
+NASMFLAGS = -f elf
 
 SRCDIR := src
 OBJDIR := bin
 BUILDDIR = build
 FONTDIR = Font
-
-#bin is short for binaries
 
 #BOOTEFI := $(GNUEFI)/x86_64/bootloader/main.efi
 BOOTEFI := $(CHADX86)/disk/EFI/Boot/BOOTX64.EFI
@@ -32,6 +30,8 @@ CPPSRC = $(shell find $(SRCDIR) -name '*.cpp')
 OBJS = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(CPPSRC))
 CSRC += $(shell find $(SRCDIR) -name '*.c')
 OBJS += $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(CSRC))
+ASMSRC += $(shell find $(SRCDIR) -name '*.asm')
+OBJS += $(patsubst $(SRCDIR)/%.asm, $(OBJDIR)/%.o, $(ASMSRC))
 DIRS = $(wildcard $(SRCDIR)/*)
 
 .PHONY: all kernel image run link mkdir clean
@@ -54,6 +54,15 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c #compiling c
 	@ echo COMPILING C objects $^
 	@ mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $^ -o $@
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.asm #compiling assembly
+	@ echo COMPILING ASSEMBLY objectsc $^
+	@ mkdir -p $(@D)
+	NASM $(NASMFLAGS) -c $^ -o $@
+
+ # $@ evaluates to all
+ # $< evaluates to library.cpp
+ # $^ evaluates to library.cpp main.cpp
 
 link: mkdir
 	@ echo LINKING
