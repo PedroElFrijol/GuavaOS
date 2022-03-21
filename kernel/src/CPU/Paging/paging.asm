@@ -1,24 +1,26 @@
-.global Load_PageDir
+[bits 64]
+
+GLOBAL Load_PageDir
 Load_PageDir:
-push %rbp
-mov %rsp, %rbp
-mov 8(%rsp), %rax
-mov %rax, %cr3
-mov %rbp, %rsp
-pop %ebp
-ret
+    push rbp
+    mov rsp, rbp
+    mov rsp, [rax + 8]
+    mov rax, cr3
+    mov rbp, rsp
+    pop rbp
+    ret
 
-.global enablePaging
+GLOBAL enablePaging
 enablePaging:
-push %rbp
-mov rsp, %rbp
-mov %cr3, %rax
-or 0x80000000, %rax
-mov %rax, %cr3
-mov %rbp, %rsp
-pop %rbp
-ret
-
+    push rbp
+    mov rsp, rbp
+    mov cr3, rax
+    or rax, 0x80000000 ;used when setting cr0 and enabling the PG bit
+    mov rax, cr3
+    mov rbp, rsp
+    pop rbp
+    ret
+    
 ;RAX is the 64 bit Accumulator register, it is a Long size register
 ;RBX is the 64 bit Base register, preserved/saved register
 ;RCX is the 64 bit Counter register, used to pass the 4th argument to functions
