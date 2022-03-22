@@ -7,7 +7,7 @@ void ColorOfScreen(int color);
 void DefaultColor(int color);
 void PrintChar(char str, int color);
 void CharPosition(int x, int y);
-void backSpace();
+void BackSpace();
 
 typedef struct screen{
 	int X;

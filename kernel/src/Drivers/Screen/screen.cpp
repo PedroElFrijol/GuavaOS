@@ -18,7 +18,7 @@ void DefaultColor(int color)
 void ColorOfScreen(int color){
     DefaultColor(color); //setting the color
 
-    char *VGA = (char *)0xB8000;
+    char *VGA = (char *)0xB8000; //video memory
     (void)VGA;
 }
 
