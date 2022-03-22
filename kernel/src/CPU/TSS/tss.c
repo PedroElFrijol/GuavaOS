@@ -2,7 +2,7 @@
 #include "../GDT/gdt.h"
 #include "../PMM/pmm.h"
 #include "../Paging/paging.h"
-#include "../../string.hpp"
+#include "../../string.h"
 
 extern TSS_64 tssDesc[];
 TSS_64 tssDesc[MAX_CPU];
@@ -27,7 +27,7 @@ uint8_t addStack(int cpu){
     return ist_num;
 }
 
-void Start_TSS()
+void Start_TSS(int cpu)
 {
     uint64_t tss = (uint64_t)&tssDesc[cpu];
     memset(tss, 0, sizeof(tss)); //memset function inside string.hpp

@@ -5,11 +5,11 @@
 #define PageAligned __attribute__((aligned(pageSize))) //aligning
 
 typedef uint64_t pagingDesc;
-extern "C" uint64_t pageDir[1024] __attribute__((aligned(4096)));
-extern "C" uint64_t PageTable1[1024] __attribute__((aligned(4096))); //the first page table
+extern uint64_t pageDir[1024] __attribute__((aligned(4096)));
+extern uint64_t PageTable1[1024] __attribute__((aligned(4096))); //the first page table
 
 void PageDirectory();
 
-struct PageAligned{ 
+typedef struct PageAligned{ 
 	pagingDesc entries[512];
-}
+};

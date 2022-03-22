@@ -15,18 +15,6 @@ struct GDTDesc{
    uint64_t base;                // The address of the first gdt_entry_t struct.
 } __attribute__((packed)) GDTDesc;
 
-
-typedef struct gdtTssDesc{
-    uint16_t    limit0;
-    uint16_t    addr0;
-    uint8_t     addr1;
-    uint8_t     type0;
-    uint8_t     limit1;
-    uint8_t     addr2;
-    uint32_t    addr3;
-    uint32_t    reserved;
-} __attribute__((packed));
-
 struct GDT{
     GDTEntry Null; //0x00
     GDTEntry KernelCode; //0x08
@@ -35,7 +23,7 @@ struct GDT{
     GDTEntry UserCode;
     GDTEntry UserData;
 } __attribute__((packed)) 
-__attribute((aligned(0x1000))) GDT;
+__attribute((aligned(0x1000))) GDT; //beginning of memory
 
 struct GDT MainGDT;
 
