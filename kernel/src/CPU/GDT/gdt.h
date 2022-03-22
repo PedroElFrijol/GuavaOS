@@ -16,14 +16,14 @@ struct GDTDesc{
 } __attribute__((packed)) GDTDesc;
 
 struct GDT{
-    GDTEntry Null; //0x00
-    GDTEntry KernelCode; //0x08
-    GDTEntry KernelData; //0x10
-    GDTEntry UserNull;
-    GDTEntry UserCode;
-    GDTEntry UserData;
+    struct GDTEntry Null; //0x00
+    struct GDTEntry KernelCode; //0x08
+    struct GDTEntry KernelData; //0x10
+    struct GDTEntry UserNull;
+    struct GDTEntry UserCode;
+    struct GDTEntry UserData;
 } __attribute__((packed)) 
-__attribute((aligned(0x1000))) GDT; //beginning of memory
+__attribute((aligned(0x1000))) GDT;
 
 struct GDT MainGDT;
 

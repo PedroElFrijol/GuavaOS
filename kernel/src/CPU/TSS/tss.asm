@@ -1,6 +1,6 @@
-GLOBAL tss_asm
+GLOBAL tss_selector
 
-tss_asm:
+tss_selector:
     push rbp
     mov rbp, rsp ;The descriptor of the TSS in the GDT
     pushfq
