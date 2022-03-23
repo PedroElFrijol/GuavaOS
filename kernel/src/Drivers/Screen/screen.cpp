@@ -1,5 +1,8 @@
 #include "../../Drivers/Keyboard/keyboard.h"
 #include "screen.h"
+#include "../IO/IObus.h"
+
+void outb(uint16_t port, uint8_t value){}; 
 
 void initialize(){
 
@@ -20,6 +23,16 @@ void ColorOfScreen(int color){
 
     char *VGA = (char *)0xB8000; //video memory
     (void)VGA;
+}
+
+void CharPosition(int x, int y)
+{
+	unsigned temp;
+	temp = y * 80 + (x / 2);
+	outb(0x3D4, 14);
+	outb(0x3D5, temp >> 8);
+	outb(0x3D4, 15);
+	outb(0x3D5, temp);
 }
 
 void BackSpace(){
