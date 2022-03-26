@@ -1,0 +1,5 @@
+todo:
+boot from fat32 (maybe 12 & 16 too) (DONE)
+load stage2 loader
+handle basic user input for os selection
+jmp to kernel file

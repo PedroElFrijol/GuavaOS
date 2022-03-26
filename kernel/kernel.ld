@@ -1,3 +1,4 @@
+OUTPUT_FORMAT(elf64-x86-64)
 ENTRY(start)	/* the name of the entry label */
 
 SECTIONS

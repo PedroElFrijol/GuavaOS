@@ -22,10 +22,9 @@ BUILDDIR = build
 FONTDIR = Font
 
 #BOOTEFI := $(GNUEFI)/x86_64/bootloader/main.efi
-BOOTEFI := $(CHADX86)/disk/EFI/Boot/BOOTX64.EFI
+BOOTEFI := $(CHADX86)/BOOTX64.EFI
 
 #rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
-
 CPPSRC = $(shell find $(SRCDIR) -name '*.cpp')
 OBJS = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(CPPSRC))
 CSRC += $(shell find $(SRCDIR) -name '*.c')
