@@ -10,6 +10,6 @@ extern uint64_t PageTable1[1024] __attribute__((aligned(4096))); //the first pag
 
 void PageDirectory();
 
-typedef struct PageAligned{ 
+typedef struct{ 
 	pagingDesc entries[512];
-};
+}PageAligned PagingTable;

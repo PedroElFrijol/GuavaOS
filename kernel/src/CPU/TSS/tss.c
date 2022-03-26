@@ -4,6 +4,8 @@
 #include "../Paging/paging.h"
 #include "../../string.h"
 
+TSS_64* tss;
+
 void* allocatePage(void){};
 uint16_t gdtInstall_TSS(uint64_t tss){};
 

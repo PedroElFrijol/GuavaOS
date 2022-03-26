@@ -25,8 +25,6 @@ typedef struct TSS_64
 
 } TSS_64 __attribute__((packed));
 
-TSS_64* tss;
-
 void tssInstall(int cpu);
 void tss_selector(uint16_t selector);
 uint8_t addStack(int cpu);
