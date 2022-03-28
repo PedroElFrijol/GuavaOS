@@ -83,14 +83,14 @@ image: kernel
 	@dd if=/dev/zero of=$(BUILDDIR)/$(OSNAME).img bs=512 count=93750 # generates a blank image
 	@mformat -i $(BUILDDIR)/$(OSNAME).img -f 1440 :: # takes that blank image and formats it into a disk image 
 	@mmd -i $(BUILDDIR)/$(OSNAME).img ::/EFI # make directories inside that disk image
-	@mmd -i $(BUILDDIR)/$(OSNAME).img ::/EFI/BOOT # copies files into that diskimage
-	@mcopy -i $(BUILDDIR)/$(OSNAME).img $(BOOTEFI) ::/EFI/BOOT
+	@mmd -i $(BUILDDIR)/$(OSNAME).img ::/EFI/Boot # copies files into that diskimage
+	@mcopy -i $(BUILDDIR)/$(OSNAME).img $(BOOTEFI) ::/EFI/Boot
 	@mcopy -i $(BUILDDIR)/$(OSNAME).img startup.nsh ::
 	@mcopy -i $(BUILDDIR)/$(OSNAME).img $(BUILDDIR)/kernel.elf :: 
 	@mcopy -i $(BUILDDIR)/$(OSNAME).img $(FONTDIR)/Unifont-APL8x16-13.0.06.psf ::
 
 run: image
-	qemu-system-x86_64 -drive file=$(BUILDDIR)/$(OSNAME).img -m 1G -cpu qemu64 -drive if=pflash,format=raw,unit=0,file="$(OVMFDIR)/OVMF_CODE-pure-efi.fd",readonly=on -drive if=pflash,format=raw,unit=1,file="$(OVMFDIR)/OVMF_VARS-pure-efi.fd" -net none
+	qemu-system-x86_64 -drive format=raw,unit=0,file=$(BUILDDIR)/$(OSNAME).img -bios $(CHADX86)/bios64.bin -m 256M -vga std -name GuavaOS -machine q35
 	@# tells the emulator to run the operating system on a VM
 
 clean:
