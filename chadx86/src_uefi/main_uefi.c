@@ -55,6 +55,9 @@ EFI_STATUS main_uefi(EFI_HANDLE ih, EFI_SYSTEM_TABLE *system_table){
         Print(L"KERNEL FAILURE! Failed to get elf header\n\r");
         return 1;
     }
+    else{
+        Print(L"KERNEL SUCCESS! elf header found\n\r");
+    }
     
     Elf64_Phdr* kernel_prog_header;
 	
