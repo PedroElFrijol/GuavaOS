@@ -2,7 +2,7 @@
 
 ## Installing and Setting up the OS
 
-  Things you will need to run are Make and QEMU KVM
+  Things you will need to run are Make, QEMU KVM and chadx86 bootloader
 
   1 `git clone https://github.com/PedroElFrijol/GuavaOS.git`
   
