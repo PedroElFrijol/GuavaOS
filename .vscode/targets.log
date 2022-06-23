@@ -1,0 +1,8 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+'\\wsl$\Ubuntu\home\marcelo\GuavaOS'
+CMD.EXE was started with the above path as the current directory.
+UNC paths are not supported.  Defaulting to Windows directory.
+
+'make.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
