@@ -12,4 +12,9 @@ class PrintChar{
 
     void Print(const char* str);
     void Char(char chr, unsigned int xOff, unsigned int yOff);
+    void ClearChar();
+    void NextLine();
+    void InsertChar(char chr);
 };
+
+extern PrintChar* printchar;

@@ -5,7 +5,7 @@ PrintChar::PrintChar(Framebuffer* fb, FONT* font){
     CharPosition = {0, 0}; // position on screen will be top left corner
 }
 
-void PrintChar::Print(Framebuffer* fb, FONT* font, unsigned int color, const char* str) { // str short for string
+void PrintChar::Print(const char* str) { // str short for string
 
     char* chr = (char*)str; // we have a pointer because if we did not we would noly be able to print one character
 
