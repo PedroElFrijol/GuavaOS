@@ -1,3 +1,4 @@
+#pragma once
 #include "kernel.h"
 
 typedef struct {
@@ -10,6 +11,5 @@ Coordinates CharPosition;
 
 void println(){ //printing new line
 	CharPosition.X = 0;
-
 	CharPosition.Y += 16;
 }

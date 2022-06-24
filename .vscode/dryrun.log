@@ -1,4 +1,4 @@
-make.exe --dry-run --always-make --keep-going --print-directory
+make.exe --dry-run --keep-going --print-directory
 '\\wsl$\Ubuntu\home\marcelo\GuavaOS'
 CMD.EXE was started with the above path as the current directory.
 UNC paths are not supported.  Defaulting to Windows directory.

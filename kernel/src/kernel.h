@@ -45,7 +45,7 @@ typedef struct {
 
 } FONT;
 
-void putChar(Framebuffer* fb, FONT* font, unsigned int color, char chr, unsigned int xOff, unsigned int yOff){
+void Char(Framebuffer* fb, FONT* font, unsigned int color, char chr, unsigned int xOff, unsigned int yOff){
 
     unsigned int* pixPtr = (unsigned int*)fb->BaseAddress; // fixes an error in C
 
@@ -71,7 +71,7 @@ void Print(Framebuffer* fb, FONT* font, unsigned int color, const char* str) { /
 
     while(*chr != 0) { // checking if the address of str is not equal to 0
 
-        putChar(fb, font, color, *chr, CharPosition.X, CharPosition.Y);
+        Char(fb, font, color, *chr, CharPosition.X, CharPosition.Y);
 
         CharPosition.X += 8; // everytime you print a character the character moves to the right 8 pixels so it doesen't overlap
 
@@ -93,7 +93,12 @@ struct BootInfo{
 	uint64_t mMapDescSize; //memory map descriptor size
 };
 
-BootInfo* bootInfo;
+void KernelInit(BootInfo* bootinfo){
+    void load_gdt();
+    void idt_install();
+}
+
+BootInfo* bootinfo;
 
 Framebuffer* fb;
 FONT* font;

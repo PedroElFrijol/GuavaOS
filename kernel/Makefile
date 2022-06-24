@@ -21,8 +21,8 @@ OBJDIR := bin
 BUILDDIR = build
 FONTDIR = Font
 
-#BOOTEFI := $(GNUEFI)/x86_64/bootloader/main.efi
-BOOTEFI := $(CHADX86)/BOOTX64.EFI
+BOOTEFI := $(GNUEFI)/x86_64/bootloader/main.efi
+#BOOTEFI := $(CHADX86)/BOOTX64.EFI
 
 #rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
 CPPSRC = $(shell find $(SRCDIR) -name '*.cpp')
@@ -91,7 +91,9 @@ image: kernel
 
 run: image
 	qemu-system-x86_64 -drive format=raw,unit=0,file=$(BUILDDIR)/$(OSNAME).img -bios $(CHADX86)/bios64.bin -m 256M -vga std -name GuavaOS -machine q35
-	@# tells the emulator to run the operating system on a VM
+#	qemu-system-x86_64 -drive file=$(BUILDDIR)/$(OSNAME).img -m 256M -cpu qemu64 -drive if=pflash,format=raw,unit=0,file="$(OVMFDIR)/OVMF_CODE-pure-efi.fd",readonly=on -drive if=pflash,format=raw,unit=1,file="$(OVMFDIR)/OVMF_VARS-pure-efi.fd" -net none
+
+# tells the emulator to run the operating system on a VM
 
 clean:
 	-@rm -rf $(OBJDIR) $(BUILDDIR)
