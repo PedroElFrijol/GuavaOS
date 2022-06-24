@@ -32,7 +32,7 @@ uint8_t addStack(int cpu){
     return ist_num;
 }
 
-void Start_TSS(int cpu)
+void tssInstall(int cpu)
 {
     uint64_t tss = (uint64_t)&tssDesc[cpu];
     memset(tss, 0, sizeof(tss)); //memset function inside string.hpp

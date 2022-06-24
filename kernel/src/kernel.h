@@ -2,6 +2,8 @@
 #include <stddef.h>
 #include <stdint.h> //defines things such as uint64_t
 #include "math.h" 
+#include "Drivers/Keyboard/keyboard.h"
+#include "Drivers/Screen/screen.h"
 
 unsigned int y = 0;
 
@@ -96,6 +98,9 @@ struct BootInfo{
 void KernelInit(BootInfo* bootinfo){
     void load_gdt();
     void idt_install();
+    void tssInstall();
+    void InitKeyboard();
+    void initialize();
 }
 
 BootInfo* bootinfo;

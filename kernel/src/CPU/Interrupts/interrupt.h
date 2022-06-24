@@ -22,5 +22,5 @@ __attribute__((interrupt)) void pf_Handler(struct interrupt_frame* frame){
 
 __attribute__((interrupt)) void kb_Handler(struct interrupt_frame* frame){
     uint8_t scancode = inb(0x60);
-    HandleKeyboard(scancode);
+    InitKeyboard(scancode);
 }
