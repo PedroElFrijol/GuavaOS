@@ -5,12 +5,11 @@
 void outb(uint16_t port, uint8_t value){}; 
 
 void initialize(){
-
     Screen-> X = 0;
     Screen-> Y = 0;
 
     Screen->VGA = (char *)0xB8000; //setting the memory buffer for the screen driver
-    Screen->dColor = 0x06; //setting the default color of screen to brown
+    Screen->dColor = 0x07; //setting the default color of screen
 }
 
 void DefaultColor(int color)
