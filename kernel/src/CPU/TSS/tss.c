@@ -6,9 +6,6 @@
 
 TSS_64* tss;
 
-void* allocatePage(void){};
-uint16_t gdtInstall_TSS(uint64_t tss){};
-
 extern TSS_64 tssDesc[];
 TSS_64 tssDesc[MAX_CPU];
 

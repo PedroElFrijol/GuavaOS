@@ -2,7 +2,7 @@
 #include "kernel.h"
 #include "math.h"
 
-class PrintChar{
+class PrintChar{ //combining all of the print related scripts together
     public:
     PrintChar(Framebuffer* fb, FONT* font);
     Coordinates CharPosition;

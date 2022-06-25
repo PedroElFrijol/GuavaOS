@@ -1,6 +1,6 @@
 #include "PrintChar.h"
 
-extern PrintChar* printchar;
+PrintChar* printchar;
 
 PrintChar::PrintChar(Framebuffer* fb, FONT* font){
     color = 0xffffffff;
@@ -13,7 +13,7 @@ void PrintChar::Print(const char* str) { // str short for string
 
     while(*chr != 0) { // checking if the address of str is not equal to 0
 
-        Char(fb, font, color, *chr, CharPosition.X, CharPosition.Y);
+        Char(*chr, CharPosition.X, CharPosition.Y);
 
         CharPosition.X += 8; // everytime you print a character the character moves to the right 8 pixels so it doesen't overlap
 

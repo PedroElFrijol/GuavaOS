@@ -19,6 +19,9 @@ namespace scancode_translations{
 
     char Translate(uint8_t scancode){
         if(scancode > 66){ // if there are more keys then what has been given then it will have a seizure 
+            return 0;
+        }
+        else{
             return scancodes[scancode].chr;
         }
     }
@@ -28,16 +31,19 @@ void InitKeyboard(uint8_t scancode){
     bool lshift;
 
     switch(scancode){
-        case LeftShift:
+        case scancode_translations::LeftShift:
             lshift = true;
             return;
-        case Enter:
+
+        case scancode_translations::EnterKey:
             printchar->println();
             return;
-        case Spacebar:
+
+        case scancode_translations::Spacebar:
             printchar->InsertChar(' ');
             return;
-        case BackSpace:
+            
+        case scancode_translations::BackSpace:
             printchar->ClearChar();
             return;
     }

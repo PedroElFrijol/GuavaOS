@@ -1,6 +1,7 @@
 #include <stdint.h>
+#define CURRENT_YEAR 2022
 
-namespace CMOS
+namespace cmos
 {
 	void init();
 	int seconds();
@@ -9,4 +10,5 @@ namespace CMOS
 	int days();
 	int months();
 	int years();
+	int centuries();
 };
