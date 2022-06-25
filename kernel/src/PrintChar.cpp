@@ -1,5 +1,7 @@
 #include "PrintChar.h"
 
+extern PrintChar* printchar;
+
 PrintChar::PrintChar(Framebuffer* fb, FONT* font){
     color = 0xffffffff;
     CharPosition = {0, 0}; // position on screen will be top left corner

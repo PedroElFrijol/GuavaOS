@@ -26,15 +26,13 @@ namespace scancode_translations{
 
 void InitKeyboard(uint8_t scancode){
     bool lshift;
-    bool rshift;
 
     switch(scancode){
-
         case LeftShift:
             lshift = true;
             return;
         case Enter:
-            printchar->NextLine();
+            printchar->println();
             return;
         case Spacebar:
             printchar->InsertChar(' ');

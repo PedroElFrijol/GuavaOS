@@ -13,7 +13,7 @@ class PrintChar{
     void Print(const char* str);
     void Char(char chr, unsigned int xOff, unsigned int yOff);
     void ClearChar();
-    void NextLine();
+    void println();
     void InsertChar(char chr);
 };
 
