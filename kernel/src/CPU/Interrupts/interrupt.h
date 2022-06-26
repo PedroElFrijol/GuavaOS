@@ -2,6 +2,7 @@
 #include "../Panic.h"
 #include "../../Drivers/Keyboard/keyboard.h"
 #include "../../IObus.h"
+#include "../../Drivers/PS2/ps2Mouse.h"
 
 //This code that connects to hardware interrupt to OS, this is also 8259 Programmable Interrupt controller (PIC)
 #define PIC1_COMMAND 0x20
@@ -18,6 +19,10 @@ struct interrupt_frame;
 __attribute__((interrupt)) void pf_Handler(struct interrupt_frame* frame){
     Panic("KERNEL PANIC! Page Fault detected!");
     while(1){}
+}
+
+__attribute__((interrupt)) void mouse_Handler(struct interrupt_frame* frame){
+    ps2Handler(data);
 }
 
 __attribute__((interrupt)) void kb_Handler(struct interrupt_frame* frame){

@@ -1,5 +1,5 @@
 #include "../../Drivers/Keyboard/keyboard.h"
-#include "../../PrintChar.h"
+#include "../../kernel.h"
 
 namespace scancode_translations{
 
@@ -36,15 +36,15 @@ void InitKeyboard(uint8_t scancode){
             return;
 
         case scancode_translations::EnterKey:
-            printchar->println();
+            println();
             return;
 
         case scancode_translations::Spacebar:
-            printchar->InsertChar(' ');
+            InsertChar(' ');
             return;
             
         case scancode_translations::BackSpace:
-            printchar->ClearChar();
+            ClearChar();
             return;
     }
 }

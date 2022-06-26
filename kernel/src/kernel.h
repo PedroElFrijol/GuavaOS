@@ -86,6 +86,14 @@ void Print(Framebuffer* fb, FONT* font, unsigned int color, const char* str) { /
     y += 16; // if it was in the loop it would print a character and keep going into a new line
 }
 
+void InsertChar(char chr){
+
+}
+
+void ClearChar(){
+    
+}
+
 struct BootInfo{
 	Framebuffer* fb;
 	FONT* font;
