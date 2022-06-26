@@ -1,8 +1,9 @@
 #pragma once //cant redefine stuff
 #include <stddef.h>
 #include <stdint.h> //defines things such as uint64_t
-#include "math.h" 
-#include "Drivers/Keyboard/keyboard.h"
+#include "math.h"
+#include "CPU/GDT/gdt.h"
+#include "CPU/IDT/IDT.h"
 
 unsigned int y = 0;
 
@@ -13,11 +14,6 @@ typedef struct {
     size_t BufferSize; // controls how big the buffer is (a buffer is a little place of data)
 
     // A framebuffer (frame buffer, or sometimes framestore) is a portion of random-access memory (RAM) containing a bitmap that drives a video display.
-
-    // Signed vales can be both negative and positive (-50/50)
-
-    // Unsigned values on the other hand, don't allow negative numbers (0/100)
-
     unsigned int Width;
 
     // screen height and width
@@ -29,28 +25,14 @@ typedef struct {
 } Framebuffer; // the name of the class and what this class does is outputs the pixels
 
 typedef struct {
-
-    unsigned char magic[2]; // we call it magic because this is the bytes the header stores that lets us identify that the psf file is a psf file
-
-    unsigned char mode; // the mode that the psf font is in
-
     unsigned char charsize; // defines how large the characters are in bytes
-
-} FONT_HEADER; // this is what the typedef is called
-
-typedef struct {
-
-    FONT_HEADER* fontHdr;
-
-    void* glyphBuffer; // keeps data about the piece of text or character
-
+    void* buffer; // keeps data about the piece of text or character
 } FONT;
 
 void Char(Framebuffer* fb, FONT* font, unsigned int color, char chr, unsigned int xOff, unsigned int yOff){
-
     unsigned int* pixPtr = (unsigned int*)fb->BaseAddress; // fixes an error in C
 
-    char* fontPtr = (char*)font->glyphBuffer + (chr * font->fontHdr->charsize); // we are getting the base address of the glyph buffer and then adding on the character times the characters size    
+    char* fontPtr = (char*)font->buffer + (chr * font->charsize); // we are getting the base address of the buffer and then adding on the character times the characters size    
 
     for(unsigned long y = yOff; y < yOff + 16; y++){ // y = 16 because the height of every character is 16 pixels
 
@@ -86,31 +68,12 @@ void Print(Framebuffer* fb, FONT* font, unsigned int color, const char* str) { /
     y += 16; // if it was in the loop it would print a character and keep going into a new line
 }
 
-void InsertChar(char chr){
-
+void println(){ //printing new line
+	CharPosition.X = 0;
+	CharPosition.Y += 16;
 }
 
-void ClearChar(){
-    
-}
-
-struct BootInfo{
-	Framebuffer* fb;
-	FONT* font;
-	void* mMap; //mMap short for memory map
-	uint64_t mMapSize; //memory map size, UINTN = uint64_t
-	uint64_t mMapDescSize; //memory map descriptor size
-};
-
-void KernelInit(BootInfo* bootinfo){
+void KernelInit(){
     void load_gdt();
     void idt_install();
-    void tssInstall();
-    void InitKeyboard();
-    void initialize();
 }
-
-BootInfo* bootinfo;
-
-Framebuffer* fb;
-FONT* font;

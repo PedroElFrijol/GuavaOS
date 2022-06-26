@@ -21,8 +21,8 @@ OBJDIR := bin
 BUILDDIR = build
 FONTDIR = Font
 
-BOOTEFI := $(GNUEFI)/x86_64/bootloader/main.efi
-#BOOTEFI := $(CHADX86)/BOOTX64.EFI
+#BOOTEFI := $(GNUEFI)/x86_64/bootloader/main.efi
+BOOTEFI := $(CHADX86)/BOOTX64.EFI
 
 #rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
 CPPSRC = $(shell find $(SRCDIR) -name '*.cpp')
@@ -80,10 +80,14 @@ image: kernel
 
 	@# generates a disk image
 	
-	@dd if=/dev/zero of=$(BUILDDIR)/$(OSNAME).img bs=512 count=93750 # generates a blank image
-	@mformat -i $(BUILDDIR)/$(OSNAME).img -f 1440 :: # takes that blank image and formats it into a disk image 
-	@mmd -i $(BUILDDIR)/$(OSNAME).img ::/EFI # make directories inside that disk image
-	@mmd -i $(BUILDDIR)/$(OSNAME).img ::/EFI/Boot # copies files into that diskimage
+	@dd if=/dev/zero of=$(BUILDDIR)/$(OSNAME).img bs=512 count=93750 
+# generates a blank image
+	@mformat -i $(BUILDDIR)/$(OSNAME).img -f 1440 :: 
+# takes that blank image and formats it into a disk image 
+	@mmd -i $(BUILDDIR)/$(OSNAME).img ::/EFI 
+# make directories inside that disk image
+	@mmd -i $(BUILDDIR)/$(OSNAME).img ::/EFI/Boot 
+# copies files into that diskimage
 	@mcopy -i $(BUILDDIR)/$(OSNAME).img $(BOOTEFI) ::/EFI/Boot
 	@mcopy -i $(BUILDDIR)/$(OSNAME).img startup.nsh ::
 	@mcopy -i $(BUILDDIR)/$(OSNAME).img $(BUILDDIR)/kernel.elf :: 

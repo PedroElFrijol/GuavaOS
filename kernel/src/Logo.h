@@ -119,5 +119,6 @@ inline void Logo(Framebuffer* fb, FONT* font){
 inline void Copyright(Framebuffer* fb, FONT* font){
 	CharPosition.X = 960;
 	CharPosition.Y = -540;
+	
 	Print(fb, font, 0xFFFDD0, "Copyright © Marcelo Raul Rios Jr. 2022");
 }

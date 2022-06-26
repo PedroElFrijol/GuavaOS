@@ -25,5 +25,4 @@ struct GDT{
 } __attribute__((packed)) 
 __attribute((aligned(0x1000)));
 
-uint16_t gdtInstall_TSS(uint64_t tss);
 void load_gdt(struct GDTDesc* gdesc); //Loading GDT

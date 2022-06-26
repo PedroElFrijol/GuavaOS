@@ -1,9 +1,8 @@
 #include "kernel.h"
 #include "math.h"
 #include "Logo.h"
-#include "MemoryMap.h"
 #include "CPU/GDT/gdt.h"
-#include "CPU/Interrupts/IDT.h"
+#include "CPU/IDT/IDT.h"
 #include "Drivers/IO/IObus.h"
 
 extern "C" void start(Framebuffer* fb, FONT* font){
@@ -13,7 +12,7 @@ extern "C" void start(Framebuffer* fb, FONT* font){
 		Logo(fb, font);
         Copyright(fb, font);
 
-        void KernelInit(BootInfo* bootinfo);
+        void KernelInit();
 
         return;
 }
