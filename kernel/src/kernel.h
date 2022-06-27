@@ -14,11 +14,7 @@ typedef struct {
     size_t BufferSize; // controls how big the buffer is (a buffer is a little place of data)
 
     // A framebuffer (frame buffer, or sometimes framestore) is a portion of random-access memory (RAM) containing a bitmap that drives a video display.
-    unsigned int Width;
-
-    // screen height and width
-
-    unsigned int Height;
+    unsigned int Width, Height; // screen height and width
 
     unsigned int PixelsPerScanLine; // Pixels per scan line is how you determinine your refresh rate
 
