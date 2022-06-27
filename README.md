@@ -14,13 +14,9 @@
 
   Chadx86 new bootloader
   
-  EFI Memory Maps added
-  
-  TSS
-  
   Memset Function
   
-  Screen Driver
+  GDT & IDT
   
 ## Things being worked on
   
@@ -28,8 +24,6 @@
   
   Paging
   
-  FileSystem
-
-  PCIE
+  TSS
 
 ![Capture](https://user-images.githubusercontent.com/45809332/137646307-5a8c6a3d-ba0d-44ca-b18c-c1f45d16533c.PNG)
