@@ -74,6 +74,6 @@ void println(){ //printing new line
 }
 
 void KernelInit(){
-    void load_gdt();
-    void idt_install();
+    void install_gdt();
+    void install_idt();
 }
