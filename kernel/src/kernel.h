@@ -3,7 +3,7 @@
 #include <stdint.h> //defines things such as uint64_t
 #include "math.h"
 #include "CPU/GDT/gdt.h"
-#include "CPU/IDT/IDT.h"
+#include "CPU/IDT/idt.h"
 
 unsigned int y = 0;
 
