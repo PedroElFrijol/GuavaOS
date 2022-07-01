@@ -11,7 +11,7 @@ extern "C" void start(Framebuffer* fb, FONT* font){
 	Logo(fb, font);
     Copyright(fb, font);
 
-    void KernelInit();
+    KernelInit();
 
     return;
 }
