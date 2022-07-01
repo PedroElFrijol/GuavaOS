@@ -9,21 +9,5 @@
   If you are on windows then you must install WSL or use a VM of any linux distro
   
   2 `cd Guava OS && make all`
-  
-## Updates and Fixes
-
-  Chadx86 new bootloader
-  
-  Memset Function
-  
-  GDT & IDT
-  
-## Things being worked on
-  
-  Keyboard input
-  
-  Paging
-  
-  TSS
 
 ![Capture](https://user-images.githubusercontent.com/45809332/137646307-5a8c6a3d-ba0d-44ca-b18c-c1f45d16533c.PNG)
