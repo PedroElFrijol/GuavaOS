@@ -10,12 +10,10 @@ unsigned int y = 0;
 typedef struct {
 
     void* BaseAddress; // a void pointer holds the address of any type of variable
-
     size_t BufferSize; // controls how big the buffer is (a buffer is a little place of data)
 
     // A framebuffer (frame buffer, or sometimes framestore) is a portion of random-access memory (RAM) containing a bitmap that drives a video display.
     unsigned int Width, Height; // screen height and width
-
     unsigned int PixelsPerScanLine; // Pixels per scan line is how you determinine your refresh rate
 
 } Framebuffer; // the name of the class and what this class does is outputs the pixels
@@ -45,7 +43,6 @@ void Char(Framebuffer* fb, FONT* font, unsigned int color, char chr, unsigned in
 }
 
 void Print(Framebuffer* fb, FONT* font, unsigned int color, const char* str) { // str short for string
-
     char* chr = (char*)str; // we have a pointer because if we did not we would noly be able to print one character
 
     while(*chr != 0) { // checking if the address of str is not equal to 0
@@ -55,7 +52,6 @@ void Print(Framebuffer* fb, FONT* font, unsigned int color, const char* str) { /
         CharPosition.X += 8; // everytime you print a character the character moves to the right 8 pixels so it doesen't overlap
 
         if(CharPosition.X >= fb->Width){
-
             CharPosition.X = 0;
             CharPosition.Y += 16;
         }

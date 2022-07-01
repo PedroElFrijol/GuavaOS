@@ -1,6 +1,5 @@
 #pragma once
-#include "kernel.h"
-#include "../IO/IObus.h"
+#include "../../kernel.h"
 
 const int LeftShift = 0x2A;
 const int LeftShiftReleased = 0xAA;

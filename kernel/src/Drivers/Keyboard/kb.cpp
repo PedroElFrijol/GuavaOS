@@ -1,4 +1,4 @@
-# include "kb.h"
+#include "kb.h"
 
 bool shift;
 
@@ -20,21 +20,21 @@ const char keycode[] ={
   0, ' '
 };
 
-void kb_Handler(uint8_t scancode){
-    switch: scancode{
-        case: LeftShift:
-            shift = true;
-            return;
-        case: LeftShiftReleased:
-            shift = false
-            return;
-        case: BackSpace:
-            return;
-        case: SpaceBar:
-            Print(fb, font, 0xfffdd0, " ");
-            return;
-        case:EnterKey
-            println();
-            return;
-    }
-}
+//void kb_Handler(Framebuffer* fb, FONT* font, uint8_t scancode){
+//    switch(scancode){
+//        case LeftShift:
+//            shift = true;
+//            return;
+//        case LeftShiftReleased:
+//            shift = false;
+//            return;
+//        case BackSpace:
+//            return;
+//        case Spacebar:
+//            Print(fb, font, 0xfffdd0, " ");
+//            return;
+//        case EnterKey:
+//            println();
+//            return;
+//    }
+//}
