@@ -2,8 +2,8 @@
 #include <stddef.h>
 #include <stdint.h> //defines things such as uint64_t
 #include "math.h"
-#include "CPU/GDT/gdt.h"
-#include "CPU/IDT/idt.h"
+//#include "CPU/GDT/gdt.h"
+//#include "CPU/IDT/idt.h"
 
 unsigned int y = 0;
 
@@ -63,9 +63,4 @@ void Print(Framebuffer* fb, FONT* font, unsigned int color, const char* str) { /
 void println(){ //printing new line
 	CharPosition.X = 0;
 	CharPosition.Y += 16;
-}
-
-void KernelInit(){
-    void install_gdt();
-    void install_idt();
 }

@@ -5,4 +5,4 @@ typedef struct {
     unsigned int Y;
 } Coordinates;
 
-Coordinates CharPosition;
+extern Coordinates CharPosition;
