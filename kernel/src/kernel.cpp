@@ -4,8 +4,6 @@
 #include "CPU/GDT/gdt.h"
 #include "CPU/IDT/idt.h"
 
-Coordinates CharPosition;
-
 void KernelInit(){
     install_gdt();
     install_idt();
