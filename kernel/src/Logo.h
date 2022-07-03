@@ -1,5 +1,5 @@
 #pragma once
-#include "kernel.h"
+#include "kernel.hpp"
 #include "math.h"
 
 inline void Logo(Framebuffer* fb, FONT* font){

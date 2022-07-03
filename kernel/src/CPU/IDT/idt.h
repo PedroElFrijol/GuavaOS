@@ -15,4 +15,4 @@ typedef struct IDTP{
 } IDTP;
 
 void idt_set_gate(int vector, void *isr, char flags);
-void install_idt();
+extern void install_idt();

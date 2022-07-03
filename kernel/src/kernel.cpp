@@ -1,8 +1,10 @@
-#include "kernel.h"
+#include "kernel.hpp"
 #include "math.h"
 #include "Logo.h"
 #include "CPU/GDT/gdt.h"
 #include "CPU/IDT/idt.h"
+
+extern "C" void install_gdt();
 
 void KernelInit(){
     install_gdt();

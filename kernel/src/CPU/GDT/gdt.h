@@ -27,5 +27,4 @@ struct GDT{
 struct GDTEntry gdt[3]; // 3 because there are 3 entries, Null desc, Code seg, Data seg
 struct gdt_ptr gp; // special pointer
 
-extern void install_gdt();
 extern void gdtFlush(); // called flush because it flushes out the olf gdt and installs new changes
