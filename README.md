@@ -11,3 +11,6 @@
   2 `cd Guava OS && make all`
 
 ![Capture](https://user-images.githubusercontent.com/45809332/137646307-5a8c6a3d-ba0d-44ca-b18c-c1f45d16533c.PNG)
+
+## Chadx86 trying to boot the OS
+![image](https://user-images.githubusercontent.com/45809332/179343248-fbb41cea-5543-48f8-aa26-ad88fb2a3eac.png)
